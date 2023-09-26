@@ -1,0 +1,405 @@
+id,natural_language_query,sql_query
+1,Drop the 'Customers' table if it exists in the database,DROP TABLE IF EXISTS `Customers`;
+2,Set a variable to the current character set client for compatibility purposes in the database.,/*!40101 SET @saved_cs_client     = @@character_set_client */;
+3,Please set the character set for the client to UTF-8 in the database for compatibility.,/*!40101 SET character_set_client = utf8 */
+4,Create a table named 'Customers' in the database.,CREATE TABLE `Customers` (
+5,"Create a table named 'Customers' with columns for CustomerID, FirstName, LastName, Email, Address, City, State, Phone, Birthday, and FavoriteDish in the database.","CREATE TABLE `Customers` (
+  `CustomerID` int(6) NOT NULL AUTO_INCREMENT,
+  `FirstName` varchar(200) NOT NULL DEFAULT '',
+  `LastName` varchar(200) NOT NULL DEFAULT '',
+  `Email` varchar(200) DEFAULT NULL,
+  `Address` varchar(200) DEFAULT NULL,
+  `City` varchar(200) DEFAULT NULL,
+  `State` char(2) DEFAULT NULL,
+  `Phone` varchar(20) NOT NULL DEFAULT '',
+  `Birthday` date DEFAULT NULL,
+  `FavoriteDish` int(6) DEFAULT NULL,"
+6,Please set the 'CustomerID' column as the primary key for the 'Customers' table.,PRIMARY KEY (`CustomerID`)
+7,"Set the database engine to InnoDB, set the AUTO_INCREMENT starting value to 101, and use the Latin1 character set for the 'Customers' table.",) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
+8,Temporarily disable index updates for the 'Customers' table to enhance performance. Please proceed with the operation.,/*!40000 ALTER TABLE `Customers` DISABLE KEYS */;
+9,"insert the following values into the 'Customers' table: (1, 'Maggi', 'Domney', 'mdomney0@wisdompets.com', '53177 Fieldstone Pass', 'San Bernardino', 'CA', '760-702-5469', '1938-10-11', 15), (2, 'Javier', 'Dawks', 'jdawks1@red30design.com', '25629 Brown Trail', 'Hartford', 'CT', '860-906-1459', '1953-11-21', 13), ... (100, 'Blythe', 'Leggan', 'bleggan2r@rouxacademy.org', '1622 Golf Course Hill', 'Montgomery', 'AL', '334-770-7364', '1996-06-11', 5);","INSERT INTO `Customers` VALUES (1,'Maggi','Domney','mdomney0@wisdompets.com','53177 Fieldstone Pass','San Bernardino','CA','760-702-5469','1938-10-11',15),(2,'Javier','Dawks','jdawks1@red30design.com','25629 Brown Trail','Hartford','CT','860-906-1459','1953-11-21',13),(3,'Aleen','Fasey','afasey2@kinetecoinc.com','41967 Mockingbird Court','Boca Raton','FL','561-410-2222','1900-08-10',3),(4,'Taylor','Jenkins','tjenkins@rouxacademy.org','968 Bartillon Park','Fort Lauderdale','FL','954-294-7424','1961-05-02',8),(5,'Imogen','Kabsch','ikabsch@landonhotel.com','222 Hudson Point','Anderson','SC','864-326-7456','1919-08-27',17),(6,'Dunc','Winny','dwinny5@kinetecoinc.com','6 Derek Avenue','Columbus','GA','706-389-4923','1919-07-19',11),(7,'Cammi','Kynett','ckynett6@orangevalleycaa.org','237 Homewood Hill','Washington','DC','202-798-6252','1927-03-06',5),(8,'Steffie','Kleis','skleis7@wisdompets.com','360 Little Fleur Park','Evansville','IN','812-301-6915','1957-12-27',8),(9,'Carilyn','Calver','ccalver8@samoca.org','3664 Emmet Circle','Dulles','VA','571-718-5931','1960-12-17',12),(10,'Barbara-anne','Sweet','bsweet9@samoca.org','257 Mallory Drive','San Antonio','TX','210-776-2859','1911-04-01',5),(11,'Faina','Nelles','fnellesa@red30design.com','1143 Nevada Plaza','Reading','PA','484-145-8882','1967-03-06',10),(12,'Orton','Stavers','ostaversb@orangevalleycaa.org','5 Pankratz Junction','Vienna','VA','571-414-2322','1910-07-20',22),(13,'Jobina','McKern','jmckernc@rouxacademy.org','28 Dovetail Circle','San Mateo','CA','805-540-9168','1923-01-19',9),(14,'Paco','Yarranton','pyarrantond@rouxacademy.org','1 Lighthouse Bay Hill','Columbus','OH','614-173-1770','1977-05-08',2),(15,'Chance','Todeo','ctodeoe@wisdompets.com','2 Debra Trail','Dallas','TX','214-351-1058','1924-08-13',16),(16,'Carla','Swinfen','cswinfenf@kinetecoinc.com','949 Northview Junction','South Bend','IN','574-883-7972','1989-05-24',10),(17,'Lani','Over','loverg@wisdompets.com','8 Roxbury Point','Colorado Springs','CO','719-792-4724','1938-08-02',20),(18,'Anthe','Dinjes','adinjesh@samoca.org','4 American Road','Washington','DC','202-164-5786','1903-12-29',3),(19,'Amby','Harber','aharberi@hplussport.com','2985 Pearson Circle','Durham','NC','919-557-3321','1925-06-21',9),(20,'Jacinta','Vallis','jvallisj@kinetecoinc.com','9 Anzinger Lane','Bakersfield','CA','661-103-5365','1994-12-10',10),(21,'Henri','Pughe','hpughek@orangevalleycaa.org','53 Blue Bill Park Point','Manassas','VA','434-339-5926','1955-01-12',22),(22,'Cassandre','Wragg','cwraggl@landonhotel.com','92285 Cascade Center','Washington','DC','703-646-1738','1960-05-01',20),(23,'Amory','Bunyard','abunyardm@samoca.org','9951 Buena Vista Point','Topeka','KS','785-691-3913','1919-01-15',14),(24,'Carny','Scamp','cscampn@wisdompets.com','9 Valley Edge Road','New York City','NY','212-198-3815','1911-02-01',14),(25,'Paulie','Kinvig','pkinvigo@hplussport.com','564 Ryan Park','Philadelphia','PA','215-647-3796','1958-08-12',10),(26,'Taylor','Jenkins','tjenkins@redt30design.com','27170 6th Center','Washington','DC','202-765-8011','1922-05-05',12),(27,'Yves','Dell\'Abbate','ydellabbateq@rouxacademy.org','68966 High Crossing Junction','Richmond','VA','804-689-9010','1902-12-23',8),(28,'Culley','Cawood','ccawoodr@samoca.org','536 Darwin Trail','Washington','DC','202-959-7069','1933-03-05',12),(29,'Herby','Aspinal','haspinals@red30design.com','7 Maple Center','Sacramento','CA','916-942-8188','1934-03-28',2),(30,'Emlyn','Attwool','eattwoolt@hplussport.com','289 Westridge Pass','Des Moines','IA','515-478-3690','1976-08-12',4),(31,'Osgood','Saunter','osaunteru@red30design.com','9686 Havey Crossing','Oklahoma City','OK','405-620-8345','1954-12-18',14),(32,'Demetri','Iacobacci','diacobacciv@landonhotel.com','1727 Vermont Point','Newark','DE','302-843-4915','1948-05-05',5),(33,'Eloisa','Forster','eforsterw@wisdompets.com','45084 Butterfield Point','Kalamazoo','MI','269-400-8205','1928-06-22',10),(34,'Carlin','Casterou','ccasteroux@landonhotel.com','17 Cordelia Trail','El Paso','TX','915-815-0411','1940-06-10',4),(35,'Luciano','Winton','lwintony@hplussport.com','386 Fairview Lane','Greensboro','NC','336-968-8032','1951-04-16',4),(36,'Allyson','Jira','ajiraz@wisdompets.com','51474 Northridge Pass','Syracuse','NY','315-720-5302','1996-01-23',20),(37,'Jillane','Livingstone','jlivingstone10@wisdompets.com','4 Arizona Hill','Fairfax','VA','571-135-9052','1928-09-30',1),(38,'Christyna','McGilroy','cmcgilroy11@landonhotel.com','47989 East Court','Washington','DC','202-132-1057','1974-08-01',18),(39,'Oralla','Dayer','odayer12@samoca.org','478 Sommers Pass','Sacramento','CA','916-274-8584','1977-05-27',2),(40,'Angelique','Farnham','afarnham13@wisdompets.com','564 Ohio Crossing','Fort Smith','AR','479-118-1613','1929-06-02',20),(41,'Lowrance','Gratton','lgratton14@hplussport.com','675 Warner Street','New York City','NY','212-562-3242','1946-10-13',15),(42,'Cleo','Goldwater','cgoldwater15@landonhotel.com','9831 Evergreen Way','Tyler','TX','903-791-7266','1959-09-14',14),(43,'Menard','Pitone','mpitone16@red30design.com','8 Petterle Road','Boston','MA','318-237-8464','1948-01-06',3),(44,'Davy','Neely','dneely17@hplussport.com','1 Shelley Road','Orlando','FL','407-752-8159','1942-10-31',1),(45,'Zechariah','Deniske','zdeniske18@kinetecoinc.com','78 Hayes Lane','Gadsden','AL','256-909-6656','1978-07-17',21),(46,'Serge','Pethrick','spethrick19@rouxacademy.org','65 Sunbrook Crossing','New Castle','PA','724-424-9472','1965-12-31',1),(47,'Lydie','Awmack','lawmack1a@samoca.org','454 Prairie Rose Street','Springfield','VA','571-709-9837','1964-03-31',8),(48,'Clementia','Furminger','cfurminger1b@kinetecoinc.com','78 Longview Avenue','El Paso','TX','915-622-4479','1966-03-17',4),(49,'Cathryn','Beau','cbeau1c@wisdompets.com','8860 Lien Road','Reno','NV','775-437-9114','1986-09-02',8),(50,'Jack','Vaan','jvaan1d@wisdompets.com','75 Gateway Circle','Boise','ID','208-648-3163','1949-07-25',15),(51,'Romeo','Annett','rannett1e@samoca.org','9229 Harbort Point','New York City','NY','212-548-7727','1937-11-20',8),(52,'Arlen','O\'Fihillie','aofihillie1f@wisdompets.com','20 Bartelt Circle','El Paso','TX','915-295-2257','1906-08-30',12),(53,'Perceval','Redpath','predpath1g@rouxacademy.org','98 Messerschmidt Court','Hyattsville','MD','301-713-2688','1955-12-03',1),(54,'Ive','Iles','iiles1h@samoca.org','75922 Fieldstone Terrace','San Francisco','CA','415-544-7619','1972-10-13',22),(55,'Robbert','Walkowski','rwalkowski1i@kinetecoinc.com','43 Fair Oaks Crossing','Los Angeles','CA','626-967-1974','1996-03-19',8),(56,'Hagen','Itzhayek','hitzhayek1j@landonhotel.com','32205 Drewry Plaza','San Francisco','CA','415-340-3585','1932-10-10',6),(57,'Kahaleel','Keaton','kkeaton1k@kinetecoinc.com','88256 Roxbury Pass','Long Beach','CA','562-637-8856','1989-08-25',2),(58,'Purcell','Llop','pllop1l@hplussport.com','8630 Loeprich Plaza','Clearwater','FL','727-959-7623','1950-05-15',3),(59,'Cornelia','Koppe','ckoppe1m@landonhotel.com','30278 Little Fleur Terrace','Vero Beach','FL','772-132-3079','1972-09-30',8),(60,'Olympia','Sansun','osansun1n@wisdompets.com','76 Ruskin Street','Brooklyn','NY','212-188-0416','1995-01-16',14),(61,'Rubia','Fitzsymon','rfitzsymon1o@red30design.com','79 Rieder Avenue','Tampa','FL','813-121-0276','1982-08-30',8),(62,'Tybie','Balme','tbalme1p@orangevalleycaa.org','17 Pine View Court','Johnson City','TN','423-364-2730','1907-01-21',5),(63,'Forest','Dubock','fdubock1q@red30design.com','3418 Maryland Circle','Tulsa','OK','918-881-4322','1991-10-05',4),(64,'Norby','Sleight','nsleight1r@kinetecoinc.com','16198 Welch Place','Oklahoma City','OK','405-786-8722','1955-11-13',7),(65,'Hayyim','Rossander','hrossander1s@wisdompets.com','5 American Ash Court','Long Beach','CA','323-318-8768','1914-11-08',22),(66,'Gilbert','Dupoy','gdupoy1t@rouxacademy.org','90863 Hermina Center','Toledo','OH','419-487-3597','1997-09-27',21),(67,'Whitney','Lamberts','wlamberts1u@red30design.com','23 Fairview Lane','San Diego','CA','858-417-9425','1996-06-15',14),(68,'Anastasie','Ferguson','aferguson1v@landonhotel.com','28138 Kenwood Park','Salt Lake City','UT','801-920-5569','1930-10-12',1),(69,'Alaster','Ruggles','aruggles1w@red30design.com','661 Grover Center','Saint Paul','MN','651-761-7780','1990-06-25',15),(70,'Loretta','Hundey','lhundey1x@kinetecoinc.com','6939 Elka Place','Los Angeles','CA','310-730-8619','1945-08-14',18),(71,'Winnah','D\'Elia','wdelia1y@red30design.com','489 Almo Drive','Whittier','CA','626-579-3814','1965-06-07',10),(72,'Trip','Pond','tpond1z@wisdompets.com','653 Manley Alley','San Jose','CA','408-716-4969','1954-08-15',19),(73,'Merle','Sukbhans','msukbhans20@orangevalleycaa.org','574 Cherokee Terrace','Grand Rapids','MI','616-189-2213','1938-10-16',13),(74,'Giraldo','Algar','galgar21@kinetecoinc.com','17 Knutson Drive','Rochester','NY','585-956-6225','1901-09-14',1),(75,'Bevvy','Harrowsmith','bharrowsmith22@red30design.com','33 Crescent Oaks Lane','San Antonio','TX','210-572-0107','1954-09-24',6),(76,'Dyanna','Fulger','dfulger23@red30design.com','15859 Kings Pass','Roanoke','VA','540-320-0153','1926-12-06',16),(77,'Viola','McLarnon','vmclarnon24@orangevalleycaa.org','16 Hanover Street','Charlotte','NC','704-789-2133','1933-04-20',13),(78,'Dorella','Linbohm','dlinbohm25@rouxacademy.org','531 Mccormick Street','Stamford','CT','203-835-7673','1935-05-29',4),(79,'Winslow','Klass','wklass26@kinetecoinc.com','7 Green Road','Shreveport','LA','318-130-3322','1972-04-12',21),(80,'Francisca','Cranmor','fcranmor27@wisdompets.com','2161 Holy Cross Terrace','Norfolk','VA','757-141-3735','1958-02-24',5),(81,'Gustave','Alphonso','galphonso28@wisdompets.com','4855 Messerschmidt Crossing','Las Vegas','NV','702-709-0059','1937-03-24',8),(82,'Jacquette','Spillard','jspillard29@red30design.com','168 Clemons Avenue','Tacoma','WA','253-406-0669','1989-03-04',7),(83,'Caril','Matejic','cmatejic2a@orangevalleycaa.org','7 Texas Hill','Grand Rapids','MI','616-748-1299','1918-06-17',15),(84,'Sianna','Drewell','sdrewell2b@kinetecoinc.com','62198 Bultman Park','Milwaukee','WI','414-182-9923','1917-10-19',21),(85,'Sonnie','MatticcI','smatticci2c@rouxacademy.org','2 Roxbury Avenue','Simi Valley','CA','805-544-5902','1996-05-09',5),(86,'Brandais','Jeannaud','bjeannaud2d@hplussport.com','19539 Melvin Place','Oklahoma City','OK','405-272-0078','1987-04-18',8),(87,'Junie','MacRury','jmacrury2e@wisdompets.com','2958 Maple Wood Road','Lake Charles','LA','337-515-7385','1963-12-25',11),(88,'Gus','Holyland','gholyland2f@red30design.com','62 8th Pass','Seattle','WA','425-916-5021','1966-08-02',8),(89,'Ab','Jurn','ajurn2g@samoca.org','11398 Norway Maple Place','Oakland','CA','415-269-1567','1997-01-18',11),(90,'Elmo','Ockland','eockland2h@landonhotel.com','38494 Mitchell Park','Washington','DC','202-866-5269','1943-09-08',15),(91,'Iver','Palke','ipalke2i@rouxacademy.org','25182 Roxbury Avenue','Philadelphia','PA','215-247-9059','1982-08-04',15),(92,'Asher','Tapley','atapley2j@kinetecoinc.com','720 Saint Paul Plaza','Hialeah','FL','786-938-4977','1959-08-05',7),(93,'Joel','Baignard','jbaignard2k@orangevalleycaa.org','8 High Crossing Court','Amarillo','TX','806-995-6798','1937-01-26',13),(94,'Curr','Fittall','cfittall2l@orangevalleycaa.org','530 Mallory Pass','Green Bay','WI','920-248-2709','1910-08-20',18),(95,'Lelah','Seathwright','lseathwright2m@samoca.org','2649 Bellgrove Way','Houston','TX','713-248-4719','1999-07-07',8),(96,'Melantha','Scowcroft','mscowcroft2n@kinetecoinc.com','23879 Reindahl Center','New York City','NY','212-694-0087','1900-04-12',18),(97,'Herb','McParland','hmcparland2o@rouxacademy.org','39 Algoma Park','Chicago','IL','630-950-3309','1916-12-25',14),(98,'Clem','Durdy','cdurdy2p@hplussport.com','594 Bonner Point','Des Moines','IA','515-680-5018','1988-03-10',16),(99,'Kala','Simonian','ksimonian2q@landonhotel.com','95 Waywood Street','Huntington','WV','304-681-5208','1947-11-30',5),(100,'Blythe','Leggan','bleggan2r@rouxacademy.org','1622 Golf Course Hill','Montgomery','AL','334-770-7364','1996-06-11',5);"
+10,Enable index updates for the 'Customers' table to ensure data integrity,/*!40000 ALTER TABLE `Customers` ENABLE KEYS */;
+11,Uunlock the tables for further operations,UNLOCK TABLES;
+12,Drop the 'CustomersDishes' table if it exists in the database,DROP TABLE IF EXISTS `CustomersDishes`;
+13,Save the current character set client value in a variable for future reference.,/*!40101 SET @saved_cs_client     = @@character_set_client */;
+14,Set the character set for the client to UTF-8 for better compatibility and text encoding.,/*!40101 SET character_set_client = utf8 */;
+15,"Create a table named 'CustomersDishes' with columns for 'CustomersDishesID', 'CustomerID', and 'DishID'?","CREATE TABLE `CustomersDishes` (
+  `CustomersDishesID` int(6) NOT NULL AUTO_INCREMENT,
+  `CustomerID` int(6) DEFAULT NULL,
+  `DishID` int(6) DEFAULT NULL,"
+16,Set the 'CustomersDishesID' column as the primary key for the 'CustomersDishes' table., PRIMARY KEY (`CustomersDishesID`)
+17,"Set the database engine to InnoDB, set the AUTO_INCREMENT starting value to 9, and use the Latin1 character set for the 'CustomersDishes' table.",) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+18,Restore the saved character set client value for the database.,/*!40101 SET character_set_client = @saved_cs_client */;
+19,Lock the 'CustomersDishes' table for writing.,LOCK TABLES `CustomersDishes` WRITE;
+20,Temporarily disable index updates for the 'CustomersDishes' table to improve performance.,/*!40000 ALTER TABLE `CustomersDishes` DISABLE KEYS */;
+21,"Insert the following values into the 'CustomersDishes' table: (1, 7, 3), (2, 7, 4), (3, 7, 21), (4, 41, 3), (5, 41, 8), (6, 41, 2), (7, 35, 8), (8, 35, 9).","INSERT INTO `CustomersDishes` VALUES (1,7,3),(2,7,4),(3,7,21),(4,41,3),(5,41,8),(6,41,2),(7,35,8),(8,35,9);"
+22,Enable index updates for the 'CustomersDishes' table to ensure data integrity.,/*!40000 ALTER TABLE `CustomersDishes` ENABLE KEYS */;
+23,Drop the 'CustomersEvents' table if it exists in the database.,DROP TABLE IF EXISTS `CustomersEvents`;
+24,Save the current character set client value in a variable for future reference.,/*!40101 SET @saved_cs_client     = @@character_set_client */;
+25,"Create a table named 'CustomersEvents' with columns for 'CustomersEventsID', 'CustomerID', and 'EventID'.","CREATE TABLE `CustomersEvents` (
+  `CustomersEventsID` int(6) NOT NULL AUTO_INCREMENT,
+  `CustomerID` int(6) DEFAULT NULL,
+  `EventID` int(6) DEFAULT NULL,"
+26,Set the 'CustomersEventsID' column as the primary key for the 'CustomersEvents' table.,PRIMARY KEY (`CustomersEventsID`)
+27,"Set the database engine to InnoDB, set the AUTO_INCREMENT starting value to 11, and use the Latin1 character set for the 'CustomersEvents' table.",) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+28,Restore the saved character set client value for the database.,/*!40101 SET character_set_client = @saved_cs_client */;
+29,Lock the 'CustomersEvents' table for writing.,LOCK TABLES `CustomersEvents` WRITE;
+30,Temporarily disable index updates for the 'CustomersEvents' table to improve performance.,/*!40000 ALTER TABLE `CustomersEvents` DISABLE KEYS */;
+31,"Insert the following values into the 'CustomersEvents' table: (1, 7, 1), (2, 7, 2), (3, 42, 1), (4, 89, 1), (5, 95, 1), (6, 4, 1), (7, 95, 2), (8, 42, 5), (9, 42, 4), (10, 71, 1).","INSERT INTO `CustomersEvents` VALUES (1,7,1),(2,7,2),(3,42,1),(4,89,1),(5,95,1),(6,4,1),(7,95,2),(8,42,5),(9,42,4),(10,71,1);"
+32,Enable index updates for the 'CustomersEvents' table to ensure data integrity.,/*!40000 ALTER TABLE `CustomersEvents` ENABLE KEYS */;
+33,Drop the 'Dishes' table if it exists in the database.,DROP TABLE IF EXISTS `Dishes`;
+34,"Create a table named 'Dishes' with columns for 'DishID', 'Name', 'Description', and 'Price'.","CREATE TABLE `Dishes` (
+  `DishID` int(6) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(200) DEFAULT NULL,
+  `Description` varchar(500) DEFAULT NULL,
+  `Price` decimal(3,2) DEFAULT NULL,"
+35,Set the 'DishID' column as the primary key for the 'Dishes' table.,PRIMARY KEY (`DishID`)
+36,"Set the database engine to InnoDB, set the AUTO_INCREMENT starting value to 23, and use the Latin1 character set for the 'Dishes' table.",) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+37,Lock the 'Dishes' table for writing.,LOCK TABLES `Dishes` WRITE;
+38,Temporarily disable index updates for the 'Dishes' table to improve performance.,/*!40000 ALTER TABLE `Dishes` DISABLE KEYS */;
+39,"insert the following values into the 'Dishes' table: (1, 'Parmesan Deviled Eggs', 'These delectable little bites are made with organic eggs, fresh Parmesan, and chopped pine nuts.', 8.00), (2, 'Artichokes with Garlic Aioli', 'Our artichokes are brushed with an olive oil and rosemary blend and then broiled to perfection. Served with a side of creamy garlic aioli.', 9.00), (3, 'French Onion Soup', 'Caramelized onions slow cooked in a savory broth, topped with sourdough and a provolone cheese blend. Served with sourdough bread.', 7.00), (4, 'Mini Cheeseburgers', 'These mini cheeseburgers are served on a fresh baked pretzel bun with lettuce, tomato, avocado, and your choice of cheese.', 8.00), (5, 'Panko Stuffed Mushrooms', 'Large mushroom caps are filled with a savory cream cheese, bacon, and panko breadcrumb stuffing, topped with cheddar cheese.', 7.00), (6, 'Garden Buffet', 'Choose from our fresh local, organically grown ingredients to make a custom salad.', 9.99), (7, 'House Salad', 'Our house salad is made with romaine lettuce and spinach, topped with tomatoes, cucumbers, red onions, and carrots. Served with a dressing of your choice.', 7.00), (8, 'Chef's Salad', 'The chef's salad has cucumber, tomatoes, red onions, mushrooms, hard-boiled eggs, cheese, and hot grilled chicken on a bed of romaine lettuce. Served with croutons and your choice of dressing.', 9.00), (9, 'Quinoa Salmon Salad', 'Our quinoa salad is served with quinoa, tomatoes, cucumber, scallions, and smoked salmon. Served with your choice of dressing.', 9.99), (10, 'Classic Burger', 'Our classic burger is made with 100% pure Angus beef, served with lettuce, tomatoes, onions, pickles, and cheese of your choice. Veggie burger available upon request. Served with French fries, fresh fruit, or a side salad.', 9.99), (11, 'Tomato Bruschetta Tortellini', 'This classic cheese tortellini is cooked in a sundried tomato sauce. Served with bruschetta topped with a tomato and basil marinara.', 9.99), (12, 'Handcrafted Pizza', 'Our thin-crust pizzas are made fresh daily and topped with your choices of fresh meats, veggies, cheese, and sauce. Price includes two toppings. Add $1 for each additional topping.', 9.99), (13, 'Barbecued Tofu Skewers', 'Our barbecued skewers include tofu, cherry tomatoes, bell peppers, and zucchini marinated in a ginger sesame sauce and charbroiled. Served with steamed rice.', 9.99), (14, 'Fiesta Family Platter', 'This platter is perfect for sharing! Enjoy our spicy buffalo wings, traditional nachos, and cheese quesadillas served with freshly made guacamole dip.', 9.99), (15, 'Creme Brulee', 'Elegantly crafted creamy vanilla custard with a caramelized crunchy layer on top. Served with seasonal fruit.', 9.00), (16, 'Cheesecake', 'Our New York Style Cheesecake is rich, smooth, and creamy. Available in various flavors, and with seasonal fruit toppings.', 9.00), (17, 'Chocolate Chip Brownie', 'A warm chocolate chip brownie served with chocolate or vanilla ice cream and rich chocolate sauce.', 6.00), (18, 'Apple Pie', 'Made with local Granny Smith apples to bring you the freshest classic apple pie available.', 5.00), (19, 'Mixed Berry Tart', 'Raspberries, blueberries, and strawberries on top of a creamy filling served in a crispy tart.', 7.00), (20, 'Tropical Blue Smoothie', 'This blueberry mint-based smoothie is refreshing and perfect for any celebration.', 6.00), (21, 'Pomegranate Iced Tea', 'Our unique blend of pomegranate juice, black Rooibos, and mint tea creates this light fusion of flavors.', 4.00), (22, 'Cafe Latte', 'Our house blend of espresso and foamed milk. Can be served with flavored syrups and over ice. Non-dairy substitutions available upon request.', 6.00).","INSERT INTO `Dishes` VALUES (1,'Parmesan Deviled Eggs ','These delectable little bites are made with organic eggs, fresh Parmesan, and chopped pine nuts.  ',8.00),(2,'Artichokes with Garlic Aioli','Our artichokes are brushed with an olive oil and rosemary blend and then broiled to perfection. Served with a side of creamy garlic aioli.',9.00),(3,'French Onion Soup','Caramelized onions slow cooked in a savory broth, topped with sourdough and a provolone cheese blend. Served with sourdough bread.',7.00),(4,'Mini Cheeseburgers ','These mini cheeseburgers are served on a fresh baked pretzel bun with lettuce, tomato, avocado, and your choice of cheese.',8.00),(5,'Panko Stuffed Mushrooms ','Large mushroom caps are filled a savory cream cheese, bacon and panko breadcrumb stuffing, topped with cheddar cheese. ',7.00),(6,'Garden Buffet','Choose from our fresh local, organically grown ingredients to make a custom salad.',9.99),(7,'House Salad','Our house salad is made with romaine lettuce and spinach, topped with tomatoes, cucumbers, red onions and carrots. Served with a dressing of your choice.',7.00),(8,'Chef\'s Salad','The chef\'s salad has cucumber, tomatoes, red onions, mushrooms, hard-boiled eggs, cheese, and hot grilled chicken on a bed of romaine lettuce. Served with croutons and your choice of dressing.',9.00),(9,'Quinoa Salmon Salad','Our quinoa salad is served with quinoa, tomatoes, cucumber, scallions, and smoked salmon. Served with your choice of dressing.',9.99),(10,'Classic Burger','Our classic burger is made with 100% pure angus beef, served with lettuce, tomatoes, onions, pickles, and cheese of your choice. Veggie burger available upon request. Served with French fries, fresh fruit, or a side salad.',9.99),(11,'Tomato Bruschetta Tortellini','This classic cheese tortellini is cooked in a sundried tomato sauce. Served with bruschetta topped with a tomato and basil marinara.',9.99),(12,'Handcrafted Pizza','Our thin crust pizzas are made fresh daily and topped with your choices of fresh meats, veggies, cheese, and sauce.  Price includes two toppings. Add $1 for each additional topping.',9.99),(13,'Barbecued Tofu Skewers','Our barbecued skewers include tofu, cherry tomatoes, bell peppers, and zucchini marinated in a ginger sesame sauce and charbroiled. Served with steamed rice.',9.99),(14,'Fiesta Family Platter','This platter is perfect for sharing! Enjoy our spicy buffalo wings, traditional nachos, and cheese quesadillas served with freshly made guacamole dip.',9.99),(15,'Creme Brulee','Elegantly crafted creamy vanilla custard with a caramelized crunchy layer on top. Served with seasonal fruit.',9.00),(16,'Cheesecake','Our New York Style Cheesecake is rich, smooth, and creamy. Available in various flavors, and with seasonal fruit toppings.',9.00),(17,'Chocolate Chip Brownie ','A warm chocolate chip brownie served with chocolate or vanilla ice cream and rich chocolate sauce.',6.00),(18,'Apple Pie','Made with local granny smith apples to bring you the freshest classic apple pie available.',5.00),(19,'Mixed Berry Tart','Raspberries, blueberries, and strawberries on top of a creamy filling served in a crispy tart.',7.00),(20,'Tropical Blue Smoothie','This blueberry mint-based smoothie is refreshing and perfect for any celebration.',6.00),(21,'Pomegranate Iced Tea','Our unique blend of pomegranate juice, black Rooibos, and mint tea creates this light fusion of flavors.  ',4.00),(22,'Cafe Latte','Our house blend of espresso and foamed milk. Can be served with flavored syrups and over ice.  Non-dairy substitutions available upon request.',6.00);"
+40,Enable indexing for the 'Dishes' table.,/*!40000 ALTER TABLE `Dishes` ENABLE KEYS */;
+41,Retrieve all records from a table,SELECT * FROM TableName;
+42,Retrieve specific columns from a table,"SELECT Column1, Column2 FROM TableName;"
+43,Retrieve distinct values from a column,SELECT DISTINCT Column FROM TableName;
+44,Filter rows based on a condition,SELECT * FROM TableName WHERE Condition;
+45,Sort rows in ascending order,SELECT * FROM TableName ORDER BY Column ASC;
+46,Sort rows in descending order,SELECT * FROM TableName ORDER BY Column DESC;
+47,Retrieve a subset of rows and columns (LIMIT),SELECT * FROM TableName LIMIT n;
+48,"Retrieve a subset of rows and columns (OFFSET, LIMIT)",SELECT * FROM TableName OFFSET m ROWS FETCH FIRST n ROWS ONLY;
+49,Calculate the sum of a column,SELECT SUM(Column) FROM TableName;
+50,Calculate the average of a column,SELECT AVG(Column) FROM TableName;
+51,Calculate the count of rows,SELECT COUNT(*) FROM TableName;
+52,Join two tables (INNER JOIN),SELECT * FROM Table1 INNER JOIN Table2 ON Table1.Column = Table2.Column;
+53,Join two tables (LEFT JOIN),SELECT * FROM Table1 LEFT JOIN Table2 ON Table1.Column = Table2.Column;
+54,Create a new table,"CREATE TABLE NewTable (Column1 DataType, Column2 DataType);"
+55,Insert new records into a table,"INSERT INTO TableName (Column1, Column2) VALUES (Value1, Value2);"
+56,Update records in a table,UPDATE TableName SET Column = Value WHERE Condition;
+57,Delete records from a table,DELETE FROM TableName WHERE Condition;
+58,Create an index on a column,CREATE INDEX IndexName ON TableName (Column);
+59,Drop an index from a table,DROP INDEX IndexName ON TableName;
+60,Group rows and calculate aggregates (GROUP BY),"SELECT Column, SUM(AnotherColumn) FROM TableName GROUP BY Column;"
+61,Filter grouped rows (HAVING),"SELECT Column, SUM(AnotherColumn) FROM TableName GROUP BY Column HAVING SUM(AnotherColumn) > Value;"
+62,"Combine multiple conditions (AND, OR)",SELECT * FROM TableName WHERE Condition1 AND (Condition2 OR Condition3);
+63,Use subqueries (nested queries),SELECT * FROM TableName WHERE Column IN (SELECT Column FROM AnotherTable WHERE Condition);
+64,Use subqueries with JOIN,SELECT * FROM Table1 WHERE Column IN (SELECT Column FROM Table2 WHERE Condition);
+65,Create a view,"CREATE VIEW ViewName AS SELECT Column1, Column2 FROM TableName WHERE Condition;"
+66,Use a Common Table Expression (CTE),"WITH CTEName AS (SELECT Column1, Column2 FROM TableName WHERE Condition) SELECT * FROM CTEName;"
+67,Use UNION to combine results from multiple SELECTs,SELECT Column FROM Table1 UNION SELECT Column FROM Table2;
+68,Use UNION ALL for combining results (including duplicates),SELECT Column FROM Table1 UNION ALL SELECT Column FROM Table2;
+69,Pivot data (transform rows into columns),"SELECT * FROM TableName PIVOT (AggregationFunction(Column) FOR PivotColumn IN (Value1, Value2, ...));"
+70,Unpivot data (transform columns into rows),"SELECT PivotColumn, Value FROM (SELECT * FROM TableName) UNPIVOT (Value FOR PivotColumn IN (Value1, Value2, ...));"
+71,Use CASE statement for conditional logic,"SELECT Column, CASE WHEN Condition1 THEN Value1 WHEN Condition2 THEN Value2 ELSE DefaultValue END AS Result FROM TableName;"
+72,Use ORDER BY with CASE for custom sorting,SELECT Column FROM TableName ORDER BY CASE WHEN Condition THEN 1 ELSE 2 END;
+73,Retrieve random rows,SELECT * FROM TableName ORDER BY RAND() LIMIT n;
+74,Retrieve rows with a specific pattern (LIKE),SELECT * FROM TableName WHERE Column LIKE 'Pattern';
+75,"If the table 'Events' exists, drop it.",DROP TABLE IF EXISTS `Events`;
+76,Save the current character set client value in @saved_cs_client.,/*!40101 SET @saved_cs_client     = @@character_set_client */;
+77,Set the character set client to utf8.,/*!40101 SET character_set_client = utf8 */;
+78,"Create a table named 'Events' with columns 'EventID' (an auto-incremented integer), 'Name' (a string with a maximum of 200 characters), 'Description' (a string with a maximum of 500 characters), 'Date' (a date and time), and 'Location' (a string with a maximum of 200 characters). The primary key is 'EventID'.","CREATE TABLE `Events` (
+  `EventID` int(6) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(200) DEFAULT NULL,
+  `Description` varchar(500) DEFAULT NULL,
+  `Date` datetime DEFAULT NULL,
+  `Location` varchar(200) DEFAULT '',"
+79,Make the 'EventID' column the primary key of the table,PRIMARY KEY (`EventID`)
+80,"Use the InnoDB storage engine, set auto-increment for 'EventID' starting from 16, and use the Latin1 character set as the default.",) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+81,Set the character set for the client to the saved character set.,/*!40101 SET character_set_client = @saved_cs_client */;
+82,Lock the 'Events' table for writing.,LOCK TABLES `Events` WRITE;
+83,Disable index keys for the 'Events' table.,/*!40000 ALTER TABLE `Events` DISABLE KEYS */;
+84,"Insert event data into the 'Events' table: Winter Wonderland event for various years, Swing into Spring event, Summer's Here event, Eating Healthy at School events, and Fall Ball event.","INSERT INTO `Events` VALUES (1,'Winter Wonderland','Join us to celebrate 2014 in a garden of organic splendor! This event will focus on seasonal treats made with health in mind!','2014-01-01 18:00:00','Landon Hotel'),(2,'Winter Wonderland','Join us to celebrate 2015 in a garden of organic splendor! This event will focus on seasonal treats made with health in mind!','2015-01-01 18:00:00','Landon Hotel'),(3,'Winter Wonderland','Join us to celebrate 2016 in a garden of organic splendor! This event will focus on seasonal treats made with health in mind!','2016-01-01 18:00:00','Landon Hotel'),(4,'Winter Wonderland','Join us to celebrate 2017 in a garden of organic splendor! This event will focus on seasonal treats made with health in mind!','2017-01-01 18:00:00','Landon Hotel'),(5,'Winter Wonderland','Join us to celebrate 2018 in a garden of organic splendor! This event will focus on seasonal treats made with health in mind!','2018-01-01 18:00:00','Landon Hotel'),(6,'Winter Wonderland','Join us to celebrate 2019 in a garden of organic splendor! This event will focus on seasonal treats made with health in mind!','2019-01-01 18:00:00','Landon Hotel'),(7,'Swing into Spring','Swing into Spring with your favorite springtime dishes! Fresh produce and delectable deserts will be featured during this vegan-friendly soiree!','2019-04-01 12:00:00','The Kale Grotto'),(8,'Summer\'s Here','Join us by the pool at the Landon Hotel San Francisco to celebrate the arrival of the warm(er) season! You bring the sunscreen, we\'ll bring the barbecued tofu!','2019-06-25 11:00:00','Rooftop Pool'),(9,'Eating Healthy at School','Apples and Peanut butter? Yes! Get the school year started off right with our healthy cooking class for kids. Schoolgoers will learn how to pack a balanced and healthy lunch that\'s ...','2019-09-01 09:00:00','Teaching Kitchen'),(10,'Eating Healthy at School','Celery can be a great snack! Get the school year started off right with our healthy cooking class for kids. Schoolgoers will learn how to pack a balanced and healthy lunch that\'s ...','2019-09-08 09:00:00','Teaching Kitchen'),(11,'Eating Healthy at School','Cheese and whole wheat crackers are an easy snack! Get the school year started off right with our healthy cooking class for kids. Schoolgoers will learn how to pack a balanced and healthy lunch that\'s ...','2019-09-15 09:00:00','Teaching Kitchen'),(12,'Eating Healthy at School','Make your own guacamole with just a few ingredients! Get the school year started off right with our healthy cooking class for kids. Schoolgoers will learn how to pack a balanced and healthy lunch that\'s ...','2019-09-22 09:00:00','Teaching Kitchen'),(13,'Eating Healthy at School','Raisins and nuts are an easy and healthy snack. Get the school year started off right with our healthy cooking class for kids. Schoolgoers will learn how to pack a balanced and healthy lunch that\'s ...','2019-09-29 09:00:00','Teaching Kitchen'),(14,'Eating Healthy at School','Did someone say Durian? Get the school year started off right with our healthy cooking class for kids. Schoolgoers will learn how to pack a balanced and healthy lunch that\'s ...','2019-10-06 09:00:00','Teaching Kitchen'),(15,'Fall Ball','Why should winter get all the fancy ballroom dancing? Join us this autumn for a black-tie affair amongst the (organic) pumpkins!','2019-10-31 17:00:00','Rick\'s Organic Pumpkin Farm');"
+85,Enable index keys for the 'Events' table.,/*!40000 ALTER TABLE `Events` ENABLE KEYS */;
+86,Unlock the tables.,UNLOCK TABLES;
+87,"Delete the table named 'EventsLocations' from the database, but only if it exists.",DROP TABLE IF EXISTS `EventsLocations`;
+88,"Save the current character set used by the client and store it in a variable called '@saved_cs_client', following the MySQL server version 40101.",/*!40101 SET @saved_cs_client     = @@character_set_client */;
+89,"Change the character set used by the client to UTF-8, in accordance with MySQL server version 40101.",/*!40101 SET character_set_client = utf8 */;
+90,"Create a new table named 'EventsLocations' with the following specifications: There will be an 'id' column that is an unsigned integer of 11 digits, not allowing null values, and auto-incremented. Additionally, include an 'EventName' column that can hold up to 200 characters and has a default value of null. Also, add a 'Location' column capable of holding up to 200 characters and with a default value of null.","CREATE TABLE `EventsLocations` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `EventName` varchar(200) DEFAULT NULL,
+  `Location` varchar(200) DEFAULT NULL,"
+91,Designate the 'id' column as the primary key for the 'EventsLocations' table.,PRIMARY KEY (`id`)
+92,"Specify that the table 'EventsLocations' will use the InnoDB storage engine. Set the auto-increment starting value to 6. Additionally, use the Latin1 character set as the default for the table.",) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+93,"Restore the character set for the client to the value saved in the variable '@saved_cs_client', following the MySQL server version 40101.",/*!40101 SET character_set_client = @saved_cs_client */;
+94,"Lock the 'EventsLocations' table for the purpose of writing, ensuring exclusive write access.",LOCK TABLES `EventsLocations` WRITE;
+95,Temporarily suspend automatic index updates for the 'EventsLocations' table to enhance performance during specific operations.,/*!40000 ALTER TABLE `EventsLocations` DISABLE KEYS */;
+96,"Add the provided data into the 'EventsLocations' table. Each entry consists of an ID, event name, and corresponding location.","INSERT INTO `EventsLocations` VALUES (1,'Winter Wonderland','Landon Hotel'),(2,'Eating Healthy at School','Teaching Kitchen'),(3,'Swing into Spring','The Kale Grotto'),(4,'Summer\'s Here','Rooftop Pool'),(5,'Fall Ball','Rick\'s Organic Pumpkin Farm');"
+97,"Resume automatic index updates for the 'EventsLocations' table, ensuring that indexes are kept up to date for optimal performance.",/*!40000 ALTER TABLE `EventsLocations` ENABLE KEYS */;
+98,"If a table named 'Orders' exists, please remove (drop) it from the database. If it doesn't exist, no action is needed.",DROP TABLE IF EXISTS `Orders`;
+99,"Create a table named ""Orders"" with columns ""OrderID"" (auto-incremented integer of up to 6 digits, not null), ""CustomerID"" (integer of up to 6 digits, default null), and ""OrderDate"" (datetime, default null).","CREATE TABLE `Orders` (
+  `OrderID` int(6) NOT NULL AUTO_INCREMENT,
+  `CustomerID` int(6) DEFAULT NULL,
+  `OrderDate` datetime DEFAULT NULL,"
+100,"Set the ""OrderID"" column as the primary key, ensuring unique and non-null values for each order.", PRIMARY KEY (`OrderID`)
+101,"Configure the table to use the InnoDB storage engine, enabling automatic incrementing of the ""OrderID"" starting from 11, and use the Latin1 character set as the default.",) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+102,Set the character set for the client connection to the previously saved character set value.,/*!40101 SET character_set_client = @saved_cs_client */;
+103,"Lock the ""Orders"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `Orders` WRITE;
+104,"Disable keys for the ""Orders"" table to optimize bulk insertion by temporarily suspending index updates.",/*!40000 ALTER TABLE `Orders` DISABLE KEYS */;
+105,"Insert specified values into the ""Orders"" table, providing order data including order IDs, customer IDs, and order dates.","INSERT INTO `Orders` VALUES (1,17,'2019-02-01 17:32:00'),(2,17,'2019-02-02 16:52:00'),(3,2,'2019-02-02 16:53:00'),(4,45,'2019-02-02 16:58:00'),(5,86,'2019-02-03 12:04:00'),(6,39,'2019-02-04 14:31:00'),(7,71,'2019-03-15 11:31:00'),(8,17,'2019-03-15 16:22:00'),(9,51,'2019-03-15 18:29:00'),(10,66,'2019-03-15 19:25:00');"
+106,"Re-enable keys for the ""Orders"" table to resume normal indexing and key updates after the bulk insertion.",/*!40000 ALTER TABLE `Orders` ENABLE KEYS */;
+107,"Drop the table named ""OrdersDishes"" if it exists, allowing for its removal from the database if present.",DROP TABLE IF EXISTS `OrdersDishes`;
+108,"Save the current character set value for the client connection and store it in a variable called ""@saved_cs_client.""",/*!40101 SET @saved_cs_client     = @@character_set_client */;
+109,"Set the character set for the client connection to ""utf8"" to ensure that subsequent communication with the database uses the UTF-8 character encoding, which is widely used for handling various languages and special characters.",/*!40101 SET character_set_client = utf8 */;
+110,"Create a table named ""OrdersDishes"" with columns: ""OrdersDishesID"" (auto-incremented integer up to 6 digits, not null), ""OrderID"" (integer up to 6 digits, default null), and ""DishID"" (integer up to 6 digits, default null).","CREATE TABLE `OrdersDishes` (
+  `OrdersDishesID` int(6) NOT NULL AUTO_INCREMENT,
+  `OrderID` int(6) DEFAULT NULL,
+  `DishID` int(6) DEFAULT NULL,"
+111,"Set the ""OrdersDishesID"" column as the primary key, ensuring unique and non-null values for each order and dish combination.",PRIMARY KEY (`OrdersDishesID`)
+112,"Configure the table to use the InnoDB storage engine, enable automatic incrementing of the ""OrdersDishesID"" starting from 21, and set the default character set to Latin1.",ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+113,"Lock the ""OrdersDishes"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `OrdersDishes` WRITE;
+114,"Temporarily suspend index updates for the ""OrdersDishes"" table to optimize bulk insertion.",/*!40000 ALTER TABLE `OrdersDishes` DISABLE KEYS */;
+115,"Insert the specified values into the ""OrdersDishes"" table, providing order-dish combinations.","INSERT INTO `OrdersDishes` VALUES (1,1,12),(2,2,5),(3,2,9),(4,3,7),(5,3,10),(6,3,16),(7,4,14),(8,5,9),(9,5,19),(10,6,20),(11,6,8),(12,7,11),(13,7,11),(14,7,3),(15,8,16),(16,9,18),(17,9,22),(18,10,21),(19,10,13),(20,10,13);"
+116,"Re-enable indexing and key updates for the ""OrdersDishes"" table after the bulk insertion is complete.",/*!40000 ALTER TABLE `OrdersDishes` ENABLE KEYS */;
+117,"Release the lock on the ""OrdersDishes"" table, allowing other operations to access the table.",UNLOCK TABLES;
+118,"If it exists, remove the table named ""Reservations"" from the database.",DROP TABLE IF EXISTS `Reservations`;
+119,"Create a table named ""Reservations"" with columns ""ReservationID"" (auto-incremented integer up to 6 digits, not null), ""CustomerID"" (integer up to 6 digits, default null), ""Date"" (datetime, default null), and ""PartySize"" (integer up to 3 digits, default null).","CREATE TABLE `Reservations` (
+  `ReservationID` int(6) NOT NULL AUTO_INCREMENT,
+  `CustomerID` int(6) DEFAULT NULL,
+  `Date` datetime DEFAULT NULL,
+  `PartySize` int(3) DEFAULT NULL,"
+120,"Set the ""ReservationID"" column as the primary key, ensuring unique and non-null values for each reservation.",PRIMARY KEY (`ReservationID`)
+121,"Configure the table to use the InnoDB storage engine, enable automatic incrementing of the ""ReservationID"" starting from 14, and set the default character set to Latin1.",) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+122,"Lock the ""Reservations"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `Reservations` WRITE;
+123,"Temporarily suspend index updates for the ""Reservations"" table to optimize bulk insertion.",/*!40000 ALTER TABLE `Reservations` DISABLE KEYS */;
+124,"Insert the specified reservation values into the ""Reservations"" table, including reservation IDs, customer IDs, reservation dates, and party sizes.","INSERT INTO `Reservations` VALUES (1,17,'2019-02-05 14:00:00',3),(2,45,'2019-02-05 14:30:00',4),(3,51,'2019-02-06 20:00:00',2),(4,89,'2019-02-06 11:00:00',1),(5,44,'2019-02-07 13:30:00',5),(6,39,'2019-02-08 10:00:00',4),(7,86,'2019-02-08 15:15:00',3),(8,17,'2019-02-09 13:00:00',3),(9,39,'2019-02-09 10:00:00',5),(10,33,'2019-02-09 10:00:00',4),(11,78,'2019-02-06 14:30:00',3),(12,84,'2019-02-06 18:00:00',5),(13,9,'2019-02-06 15:00:00',4);"
+125,"Re-enable indexing and key updates for the ""Reservations"" table after the bulk insertion is complete.",/*!40000 ALTER TABLE `Reservations` ENABLE KEYS */;
+126,"Release the lock on the ""Reservations"" table, allowing other operations to access the table.",UNLOCK TABLES;
+127,Restore the previous time zone setting to its original value.,/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+128,"Restore the SQL mode to the previous setting and assign it to the variable ""@OLD_SQL_MODE.""",/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+129,"Restore the previous value of the ""FOREIGN_KEY_CHECKS"" setting, ensuring foreign key checks are set to their original state.",/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+130,"Restore the previous value of the ""UNIQUE_CHECKS"" setting, ensuring unique checks are set to their original state.",/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+131,Restore the previous client-side character set to its original value.,/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+132,Restore the previous character set for query results to its original value.,/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+133,Restore the previous collation for the connection to its original value.,/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+134,Restore the SQL notes setting to its original state.,/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+135,Create a database if it doesn't already exist,CREATE DATABASE IF NOT EXISTS database_name
+136,Switch to a specific database.,USE database_name
+137,Display a list of all databases.,SHOW DATABASES;
+138,Delete a database if it exists.,DROP DATABASE IF EXISTS database_name;
+139,Grant specific privileges to a user on a database.,GRANT privileges ON database_name.* TO 'username'@'hostname';
+140,Revoke specific privileges from a user on a database.,REVOKE privileges ON database_name.* FROM 'username'@'hostname';
+141,Display privileges granted to a user.,SHOW GRANTS FOR 'username'@'hostname';
+142,Create a user with a specified username and password.,CREATE USER 'username'@'hostname' IDENTIFIED BY 'password';
+143,Change the password for a user.,ALTER USER 'username'@'hostname' IDENTIFIED BY 'new_password';
+144,Delete a user.,DROP USER 'username'@'hostname';
+145,Display a list of tables in the current database.,SHOW TABLES;
+146,Show the structure (columns) of a specific table.,DESCRIBE table_name; or SHOW COLUMNS FROM table_name;
+147,Create a new table with specified columns and data types.,"CREATE TABLE table_name (column1 datatype1, column2 datatype2, ...);"
+148,Add a new column to an existing table.,ALTER TABLE table_name ADD column_name datatype;
+149,Modify the data type of a column in an existing table.,ALTER TABLE table_name MODIFY column_name datatype;
+150,Remove a column from an existing table.,ALTER TABLE table_name DROP COLUMN column_name;
+151,Change the name of an existing table.,ALTER TABLE old_table_name RENAME TO new_table_name;
+152,"Delete all records from a table, keeping the structure intact.",TRUNCATE TABLE table_name;
+153,Delete a table if it exists.,DROP TABLE IF EXISTS table_name;
+154,Create an index on a specific column of a table.,CREATE INDEX index_name ON table_name (column_name);
+155,Create a unique index on a specific column of a table.,CREATE UNIQUE INDEX index_name ON table_name (column_name);
+156,Delete an index from a table.,DROP INDEX index_name ON table_name;
+157,Backup a MySQL database using mysqldump.,mysqldump -u username -p database_name > backup_file.sql
+158,Restore a MySQL database from a backup file using the mysql command.,mysql -u username -p database_name < backup_file.sql
+159,"Create a database named ""blog"" if it does not already exist, using the UTF-8 character encoding (utf8mb4) and the utf8mb4_unicode_ci collation for proper handling of multilingual characters and sorting.",CREATE DATABASE  IF NOT EXISTS `blog` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+160,"Switch to or use the ""blog"" database for performing operations and queries within that specific database context.",USE `blog`;
+,"Save the current character set being used for client communication in a variable called ""@OLD_CHARACTER_SET_CLIENT"".",/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+161,"Save the current character set being used for displaying query results in a variable called ""@OLD_CHARACTER_SET_RESULTS"".",/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+162,"Save the current collation being used for the connection in a variable called ""@OLD_COLLATION_CONNECTION"".",/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+163,Set the character encoding for the current connection to UTF-8 (utf8) to ensure proper handling of text and characters in the database.,SET NAMES utf8 ;
+164,"Save the current time zone setting in a variable called ""@OLD_TIME_ZONE"".",/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+165,Set the time zone for the current session to Coordinated Universal Time (UTC).,/*!40103 SET TIME_ZONE='+00:00' */;
+166,"Save the current settings for unique checks and foreign key checks into variables ""@OLD_UNIQUE_CHECKS"" and ""@OLD_FOREIGN_KEY_CHECKS"" respectively, then temporarily turn off these checks.","/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;"
+167,"Save the current SQL mode into a variable ""@OLD_SQL_MODE"", and set the SQL mode to prevent automatic assignment of zero for AUTO_INCREMENT fields.","/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;"
+168,"Save the current SQL notes setting into a variable ""@OLD_SQL_NOTES"", and temporarily turn off SQL notes.","/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;"
+169,,"/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;"
+170,"If the table named ""category"" exists, remove it from the database.",DROP TABLE IF EXISTS `category`;
+171,"Set the ""@saved_cs_client"" variable to the current character set being used for the client connection.",/*!40101 SET @saved_cs_client     = @@character_set_client */;
+172,Set the character set for the client connection to UTF-8 (utf8mb4) for proper handling of text and characters.,SET character_set_client = utf8mb4 ;
+173,"Create a ""category"" table with columns for ID, parent ID, title, meta title, slug, and content, specifying their respective data types, character set (utf8mb4), and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `category` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `parentId` bigint(20) DEFAULT NULL,
+  `title` varchar(75) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `metaTitle` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci,"
+174,"Define the ""id"" column as the primary key, ensuring each record has a unique identifier, and create an index on the ""parentId"" column to optimize queries related to parent categories.","PRIMARY KEY (`id`),
+  KEY `idx_category_parent` (`parentId`),"
+175,"Establish a foreign key constraint named ""fk_category_parent"" on the ""parentId"" column, referencing the ""id"" column in the ""category"" table to maintain referential integrity, linking child categories to their respective parent categories.",CONSTRAINT `fk_category_parent` FOREIGN KEY (`parentId`) REFERENCES `category` (`id`)
+176,Set the storage engine to InnoDB and configure the default character set to UTF-8 (utf8mb4) with a case-insensitive collation (utf8mb4_unicode_ci) for the table.,) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+177,"Revert the character set for the client connection to the previously saved character set using ""@saved_cs_client"". This ensures the client uses the original character set after a temporary change.",/*!40101 SET character_set_client = @saved_cs_client */;
+178,"Lock the ""category"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `category` WRITE;
+179,"Temporarily disable index updates for the ""category"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+180,"Re-enable indexing and key updates for the ""category"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+181,"Release the lock on the ""category"" table, allowing other operations to access the table.",UNLOCK TABLES;
+182,"Drop the table named ""post"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post`;
+183,Set the character encoding for the client connection to UTF-8 (utf8mb4) for proper handling of text and characters.,SET character_set_client = utf8mb4 ;
+184,"Create a table named ""post"" with columns for unique ID, author ID, parent ID, title, metadata title, slug, summary, publication status, creation and update timestamps, publication timestamp, and content, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `post` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `authorId` bigint(20) NOT NULL,
+  `parentId` bigint(20) DEFAULT NULL,
+  `title` varchar(75) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `metaTitle` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `summary` tinytext COLLATE utf8mb4_unicode_ci,
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `publishedAt` datetime DEFAULT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci,"
+185,"Set the ""id"" column as the primary key and define unique keys for the ""slug"" and indexing keys for ""authorId"" and ""parentId"" columns in the ""post"" table.","PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_slug` (`slug`),
+  KEY `idx_post_user` (`authorId`),
+  KEY `idx_post_parent` (`parentId`),"
+186,"Establish foreign key constraints, linking the ""parentId"" column in the ""post"" table to the ""id"" column in the same table, and the ""authorId"" column in the ""post"" table to the ""id"" column in the ""user"" table, ensuring referential integrity between the respective columns.","CONSTRAINT `fk_post_parent` FOREIGN KEY (`parentId`) REFERENCES `post` (`id`),
+  CONSTRAINT `fk_post_user` FOREIGN KEY (`authorId`) REFERENCES `user` (`id`)"
+187,"Establish a foreign key constraint named ""fk_post_parent"" on the ""parentId"" column in the ""post"" table, referencing the ""id"" column in the same ""post"" table, ensuring referential integrity for the parent-child relationship.","CONSTRAINT `fk_post_parent` FOREIGN KEY (`parentId`) REFERENCES `post` (`id`),"
+188,"Create a foreign key constraint named ""fk_post_user"" on the ""authorId"" column in the ""post"" table, referencing the ""id"" column in the ""user"" table, ensuring referential integrity between the ""post"" and ""user"" tables based on the author's ID.",CONSTRAINT `fk_post_user` FOREIGN KEY (`authorId`) REFERENCES `user` (`id`)
+189,Set the storage engine for the table to InnoDB and configure the default character set to UTF-8 (utf8mb4) with a case-insensitive collation (utf8mb4_unicode_ci).,) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+190,"Lock the ""post"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post` WRITE;
+191,"Temporarily disable index updates for the ""post"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post` DISABLE KEYS */;
+192,"Re-enable indexing and key updates for the ""post"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post` ENABLE KEYS */;
+193,"Release the lock on the ""post"" table, allowing other operations to access the table.",UNLOCK TABLES;
+194,"Drop the table named ""post_category"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post_category`;
+195,Set the character encoding for the client connection to UTF-8 (utf8mb4) for proper handling of text and characters.,SET character_set_client = utf8mb4 ;
+196,"Create a table named ""post_category"" with columns for post ID and category ID, specifying their respective data types as bigint(20) and ensuring they are not null.","CREATE TABLE `post_category` (
+  `postId` bigint(20) NOT NULL,
+  `categoryId` bigint(20) NOT NULL,"
+197,"Set a composite primary key on the columns ""postId"" and ""categoryId"" in the ""post_category"" table, ensuring a unique combination of post and category IDs. Additionally, create indexes on ""categoryId"" and ""postId"" columns for efficient querying, with the ""idx_pc_post"" index set as invisible.","PRIMARY KEY (`postId`,`categoryId`),
+  KEY `idx_pc_category` (`categoryId`),
+  KEY `idx_pc_post` (`postId`) /*!80000 INVISIBLE */,"
+198,"Establish a foreign key constraint named ""fk_pc_category"" on the ""categoryId"" column in the ""post_category"" table, referencing the ""id"" column in the ""category"" table, ensuring referential integrity for the relationship between posts and categories.","CONSTRAINT `fk_pc_category` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`),"
+199,"Create a foreign key constraint named ""fk_pc_post"" on the ""postId"" column in the ""post_category"" table, referencing the ""id"" column in the ""post"" table, ensuring referential integrity for the relationship between posts and post categories.",CONSTRAINT `fk_pc_post` FOREIGN KEY (`postId`) REFERENCES `post` (`id`)
+200,"Lock the ""post_category"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post_category` WRITE;
+201,"Temporarily disable index updates for the ""post_category"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post_category` DISABLE KEYS */;
+202,"Re-enable indexing and key updates for the ""post_category"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post_category` ENABLE KEYS */;
+203,"Drop the table named ""post_comment"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post_comment`;
+204,"Create a table named ""post_comment"" with columns for a unique identifier, post ID, parent comment ID, title, publication status, creation timestamp, publication timestamp, and content, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `post_comment` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `postId` bigint(20) NOT NULL,
+  `parentId` bigint(20) DEFAULT NULL,
+  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `createdAt` datetime NOT NULL,
+  `publishedAt` datetime DEFAULT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci,"
+205,"Set the ""id"" column as the primary key and define indexing keys on the ""postId"" column (marked as invisible) and the ""parentId"" column in the ""post_comment"" table for efficient querying based on post IDs and parent comment IDs.","PRIMARY KEY (`id`),
+  KEY `idx_comment_post` (`postId`) /*!80000 INVISIBLE */,
+  KEY `idx_comment_parent` (`parentId`),"
+206,"Establish a foreign key constraint named ""fk_comment_parent"" on the ""parentId"" column in the ""post_comment"" table, referencing the ""id"" column in the same ""post_comment"" table, ensuring referential integrity for the parent-child relationship among comments.","  CONSTRAINT `fk_comment_parent` FOREIGN KEY (`parentId`) REFERENCES `post_comment` (`id`),"
+207,"Create a foreign key constraint named ""fk_comment_post"" on the ""postId"" column in the ""post_comment"" table, referencing the ""id"" column in the ""post"" table, ensuring referential integrity between comments and their associated posts.",CONSTRAINT `fk_comment_post` FOREIGN KEY (`postId`) REFERENCES `post` (`id`)
+208,"Lock the ""post_comment"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post_comment` WRITE;
+209,"Temporarily disable index updates for the ""post_comment"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post_comment` DISABLE KEYS */;
+210,"Re-enable indexing and key updates for the ""post_comment"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post_comment` ENABLE KEYS */;
+211,"Drop the table named ""post_meta"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post_meta`;
+212,"Create a table named ""post_meta"" with columns for a unique identifier, post ID, a key (limited to 50 characters) representing metadata, and content, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `post_meta` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `postId` bigint(20) NOT NULL,
+  `key` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci,"
+213,"Set the ""id"" column as the primary key and define a unique key ""uq_post_meta"" on the combination of ""postId"" and ""key"" (marked as invisible) for the ""post_meta"" table, ensuring a unique combination of post and metadata keys. Additionally, create an index on the ""postId"" column for efficient querying based on post IDs.","PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_post_meta` (`postId`,`key`) /*!80000 INVISIBLE */,
+  KEY `idx_meta_post` (`postId`),"
+214,"Create a foreign key constraint named ""fk_meta_post"" on the ""postId"" column in the ""post_meta"" table, referencing the ""id"" column in the ""post"" table, ensuring referential integrity between post metadata and their associated posts.", CONSTRAINT `fk_meta_post` FOREIGN KEY (`postId`) REFERENCES `post` (`id`)
+215,"Lock the ""post_meta"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post_meta` WRITE;
+216,"Temporarily disable index updates for the ""post_meta"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post_meta` DISABLE KEYS */;
+217,"Re-enable indexing and key updates for the ""post_meta"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post_meta` ENABLE KEYS */;
+218,"Drop the table named ""post_tag"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post_tag`;
+219,"Create a table named ""post_tag"" with columns for post ID and tag ID, specifying their respective data types as bigint(20) and ensuring they are not null.","CREATE TABLE `post_tag` (
+  `postId` bigint(20) NOT NULL,
+  `tagId` bigint(20) NOT NULL,"
+220,"Create a table named ""post_tag"" with columns for post ID and tag ID, specifying their respective data types as bigint(20) and ensuring they are not null.","PRIMARY KEY (`postId`,`tagId`),
+  KEY `idx_pt_tag` (`tagId`),
+  KEY `idx_pt_post` (`postId`),"
+221,"Create a foreign key constraint named ""fk_pt_post"" on the ""postId"" column in the ""post_tag"" table, referencing the ""id"" column in the ""post"" table, ensuring referential integrity between post tags and their associated posts.","CONSTRAINT `fk_pt_post` FOREIGN KEY (`postId`) REFERENCES `post` (`id`),"
+222,"Create a foreign key constraint named ""fk_pt_tag"" on the ""tagId"" column in the ""post_tag"" table, referencing the ""id"" column in the ""tag"" table, ensuring referential integrity between post tags and their associated tags.",CONSTRAINT `fk_pt_tag` FOREIGN KEY (`tagId`) REFERENCES `tag` (`id`)
+223,"Lock the ""post_tag"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post_tag` WRITE;
+224,"Temporarily disable index updates for the ""post_tag"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post_tag` DISABLE KEYS */;
+225,"Re-enable indexing and key updates for the ""post_tag"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post_tag` ENABLE KEYS */;
+226,"Drop the table named ""tag"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `tag`;
+227,"Create a table named ""tag"" with columns for a unique identifier, title, metadata title, slug, and content, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `tag` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(75) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `metaTitle` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci,"
+228,"Set the ""id"" column as the primary key in the ""tag"" table, ensuring a unique identifier for each record.",PRIMARY KEY (`id`)
+229,"Lock the ""tag"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `tag` WRITE;
+230,"Temporarily disable index updates for the ""tag"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `tag` DISABLE KEYS */;
+231,"Re-enable indexing and key updates for the ""tag"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `tag` ENABLE KEYS */;
+232,"Drop the table named ""user"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `user`;
+233,"Create a table named ""user"" with columns for a unique identifier, first name, middle name, last name, mobile number, email, password hash, registration timestamp, last login timestamp, introduction, and profile, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `user` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `middleName` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lastName` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mobile` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `passwordHash` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `registeredAt` datetime NOT NULL,
+  `lastLogin` datetime DEFAULT NULL,
+  `intro` tinytext COLLATE utf8mb4_unicode_ci,
+  `profile` text COLLATE utf8mb4_unicode_ci,"
+234,"Set the ""id"" column as the primary key and define unique keys on the ""mobile"" and ""email"" columns in the ""user"" table, ensuring a unique mobile number and email for each user.","PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_mobile` (`mobile`),
+  UNIQUE KEY `uq_emai` (`email`)"
+235,"Lock the ""user"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `user` WRITE;
+236,"Temporarily disable index updates for the ""user"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+237,"Re-enable indexing and key updates for the ""user"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+238,"Release the lock on the ""user"" table, allowing other operations to access the table.",UNLOCK TABLES;
+239,Restore the previous time zone setting.,/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+240,Restore the SQL mode to its previous value.,/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+241,Restore foreign key checks to their previous value.,/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+242,Restore unique checks to their previous value.,/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+243,Restore the character set for the client to its previous value.,/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+244,Restore the character set for results to its previous value.,/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+245,Restore collation connection to its previous value.,/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+246,Restore SQL notes to their previous value.,/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+247,,
+248,,
+249,,
+250,,
+251,,
+252,,
+253,,
+254,,
+255,,
+256,,
+257,,
+258,,
+259,,
+260,,
+261,,
+262,,
+263,,
+264,,
+265,,
+266,,
+267,,
+268,,
+269,,
+270,,
+271,,
+272,,
+273,,
+274,,
+275,,
+276,,
+277,,
+278,,
+279,,
+280,,
+281,,
+282,,
+283,,
+284,,
+285,,
+286,,
+287,,
+288,,
+289,,
+290,,
+291,,
+292,,
+293,,
+294,,
+295,,
+296,,
+297,,
+298,,
+299,,
+300,,
