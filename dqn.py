@@ -69,22 +69,34 @@ def initialize_environment_and_agent():
     return env, dqn_agent
 
 
-def train_dqn_agent(env, dqn_agent, num_episodes=1000, gamma=0.99, save_interval = 100):
+
+def train_dqn_agent(env, dqn_agent, num_episodes=1000, gamma=0.99, epsilon_start=1.0, epsilon_end=0.1,
+                    epsilon_decay=0.995, save_interval=100):
     print("Training DQN agent...")
+    epsilon = epsilon_start
     for episode in range(num_episodes):
         print(f"Episode {episode + 1}/{num_episodes}")
         state = env.reset()
         done = False
         while not done:
-            action = env.action_space.sample()
+            # Epsilon-greedy action selection
+            if np.random.rand() <= epsilon:
+                action = env.action_space.sample()
+            else:
+                action = np.argmax(dqn_agent.q_network.predict(np.array([state])))
+
             next_state, reward, done, _ = env.step(action)
             dqn_agent.learn(np.array([state]), np.array([action]), np.array([reward]), np.array([next_state]), done,
                             gamma)
             state = next_state
-            # Save the model at regular intervals and at the end of training
-            if (episode + 1) % save_interval == 0 or episode == num_episodes - 1:
-                dqn_agent.q_network.save_weights(f'dqn_model/dqn_model_weights_{episode + 1}.keras')
-                print(f"Saved DQN model weights at episode {episode + 1}")
+
+            # Decay epsilon
+            epsilon = max(epsilon_end, epsilon_decay * epsilon)
+
+        # Save the model at regular intervals and at the end of training
+        if (episode + 1) % save_interval == 0 or episode == num_episodes - 1:
+            dqn_agent.q_network.save_weights(f'dqn_model/dqn_model_weights_{episode + 1}.h5')
+            print(f"Saved DQN model weights at episode {episode + 1}")
     print("Training of the DQN agent is complete!")
 
 if __name__ == "__main__":
