@@ -197,38 +197,38 @@ id,natural_language_query,sql_query
 158,Restore a MySQL database from a backup file using the mysql command.,mysql -u username -p database_name < backup_file.sql
 159,"Create a database named ""blog"" if it does not already exist, using the UTF-8 character encoding (utf8mb4) and the utf8mb4_unicode_ci collation for proper handling of multilingual characters and sorting.",CREATE DATABASE  IF NOT EXISTS `blog` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 160,"Switch to or use the ""blog"" database for performing operations and queries within that specific database context.",USE `blog`;
-,"Save the current character set being used for client communication in a variable called ""@OLD_CHARACTER_SET_CLIENT"".",/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-161,"Save the current character set being used for displaying query results in a variable called ""@OLD_CHARACTER_SET_RESULTS"".",/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-162,"Save the current collation being used for the connection in a variable called ""@OLD_COLLATION_CONNECTION"".",/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-163,Set the character encoding for the current connection to UTF-8 (utf8) to ensure proper handling of text and characters in the database.,SET NAMES utf8 ;
-164,"Save the current time zone setting in a variable called ""@OLD_TIME_ZONE"".",/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-165,Set the time zone for the current session to Coordinated Universal Time (UTC).,/*!40103 SET TIME_ZONE='+00:00' */;
-166,"Save the current settings for unique checks and foreign key checks into variables ""@OLD_UNIQUE_CHECKS"" and ""@OLD_FOREIGN_KEY_CHECKS"" respectively, then temporarily turn off these checks.","/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;"
-167,"Save the current SQL mode into a variable ""@OLD_SQL_MODE"", and set the SQL mode to prevent automatic assignment of zero for AUTO_INCREMENT fields.","/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;"
-168,"Save the current SQL notes setting into a variable ""@OLD_SQL_NOTES"", and temporarily turn off SQL notes.","/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;"
-169,,"/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;"
-170,"If the table named ""category"" exists, remove it from the database.",DROP TABLE IF EXISTS `category`;
-171,"Set the ""@saved_cs_client"" variable to the current character set being used for the client connection.",/*!40101 SET @saved_cs_client     = @@character_set_client */;
-172,Set the character set for the client connection to UTF-8 (utf8mb4) for proper handling of text and characters.,SET character_set_client = utf8mb4 ;
-173,"Create a ""category"" table with columns for ID, parent ID, title, meta title, slug, and content, specifying their respective data types, character set (utf8mb4), and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `category` (
+161,"Save the current character set being used for client communication in a variable called ""@OLD_CHARACTER_SET_CLIENT"".",/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+162,"Save the current character set being used for displaying query results in a variable called ""@OLD_CHARACTER_SET_RESULTS"".",/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+163,"Save the current collation being used for the connection in a variable called ""@OLD_COLLATION_CONNECTION"".",/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+164,Set the character encoding for the current connection to UTF-8 (utf8) to ensure proper handling of text and characters in the database.,SET NAMES utf8 ;
+165,"Save the current time zone setting in a variable called ""@OLD_TIME_ZONE"".",/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+166,Set the time zone for the current session to Coordinated Universal Time (UTC).,/*!40103 SET TIME_ZONE='+00:00' */;
+167,"Save the current settings for unique checks and foreign key checks into variables ""@OLD_UNIQUE_CHECKS"" and ""@OLD_FOREIGN_KEY_CHECKS"" respectively, then temporarily turn off these checks.","/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;"
+168,"Save the current SQL mode into a variable ""@OLD_SQL_MODE"", and set the SQL mode to prevent automatic assignment of zero for AUTO_INCREMENT fields.","/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;"
+169,"Save the current SQL notes setting into a variable ""@OLD_SQL_NOTES"", and temporarily turn off SQL notes.","/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;"
+170,,"/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;"
+171,"If the table named ""category"" exists, remove it from the database.",DROP TABLE IF EXISTS `category`;
+172,"Set the ""@saved_cs_client"" variable to the current character set being used for the client connection.",/*!40101 SET @saved_cs_client     = @@character_set_client */;
+173,Set the character set for the client connection to UTF-8 (utf8mb4) for proper handling of text and characters.,SET character_set_client = utf8mb4 ;
+174,"Create a ""category"" table with columns for ID, parent ID, title, meta title, slug, and content, specifying their respective data types, character set (utf8mb4), and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `category` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `parentId` bigint(20) DEFAULT NULL,
   `title` varchar(75) COLLATE utf8mb4_unicode_ci NOT NULL,
   `metaTitle` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci,"
-174,"Define the ""id"" column as the primary key, ensuring each record has a unique identifier, and create an index on the ""parentId"" column to optimize queries related to parent categories.","PRIMARY KEY (`id`),
+175,"Define the ""id"" column as the primary key, ensuring each record has a unique identifier, and create an index on the ""parentId"" column to optimize queries related to parent categories.","PRIMARY KEY (`id`),
   KEY `idx_category_parent` (`parentId`),"
-175,"Establish a foreign key constraint named ""fk_category_parent"" on the ""parentId"" column, referencing the ""id"" column in the ""category"" table to maintain referential integrity, linking child categories to their respective parent categories.",CONSTRAINT `fk_category_parent` FOREIGN KEY (`parentId`) REFERENCES `category` (`id`)
-176,Set the storage engine to InnoDB and configure the default character set to UTF-8 (utf8mb4) with a case-insensitive collation (utf8mb4_unicode_ci) for the table.,) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-177,"Revert the character set for the client connection to the previously saved character set using ""@saved_cs_client"". This ensures the client uses the original character set after a temporary change.",/*!40101 SET character_set_client = @saved_cs_client */;
-178,"Lock the ""category"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `category` WRITE;
-179,"Temporarily disable index updates for the ""category"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `category` DISABLE KEYS */;
-180,"Re-enable indexing and key updates for the ""category"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `category` ENABLE KEYS */;
-181,"Release the lock on the ""category"" table, allowing other operations to access the table.",UNLOCK TABLES;
-182,"Drop the table named ""post"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post`;
-183,Set the character encoding for the client connection to UTF-8 (utf8mb4) for proper handling of text and characters.,SET character_set_client = utf8mb4 ;
-184,"Create a table named ""post"" with columns for unique ID, author ID, parent ID, title, metadata title, slug, summary, publication status, creation and update timestamps, publication timestamp, and content, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `post` (
+176,"Establish a foreign key constraint named ""fk_category_parent"" on the ""parentId"" column, referencing the ""id"" column in the ""category"" table to maintain referential integrity, linking child categories to their respective parent categories.",CONSTRAINT `fk_category_parent` FOREIGN KEY (`parentId`) REFERENCES `category` (`id`)
+177,Set the storage engine to InnoDB and configure the default character set to UTF-8 (utf8mb4) with a case-insensitive collation (utf8mb4_unicode_ci) for the table.,) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+178,"Revert the character set for the client connection to the previously saved character set using ""@saved_cs_client"". This ensures the client uses the original character set after a temporary change.",/*!40101 SET character_set_client = @saved_cs_client */;
+179,"Lock the ""category"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `category` WRITE;
+180,"Temporarily disable index updates for the ""category"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+181,"Re-enable indexing and key updates for the ""category"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+182,"Release the lock on the ""category"" table, allowing other operations to access the table.",UNLOCK TABLES;
+183,"Drop the table named ""post"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post`;
+184,Set the character encoding for the client connection to UTF-8 (utf8mb4) for proper handling of text and characters.,SET character_set_client = utf8mb4 ;
+185,"Create a table named ""post"" with columns for unique ID, author ID, parent ID, title, metadata title, slug, summary, publication status, creation and update timestamps, publication timestamp, and content, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `post` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `authorId` bigint(20) NOT NULL,
   `parentId` bigint(20) DEFAULT NULL,
@@ -241,34 +241,34 @@ id,natural_language_query,sql_query
   `updatedAt` datetime DEFAULT NULL,
   `publishedAt` datetime DEFAULT NULL,
   `content` text COLLATE utf8mb4_unicode_ci,"
-185,"Set the ""id"" column as the primary key and define unique keys for the ""slug"" and indexing keys for ""authorId"" and ""parentId"" columns in the ""post"" table.","PRIMARY KEY (`id`),
+186,"Set the ""id"" column as the primary key and define unique keys for the ""slug"" and indexing keys for ""authorId"" and ""parentId"" columns in the ""post"" table.","PRIMARY KEY (`id`),
   UNIQUE KEY `uq_slug` (`slug`),
   KEY `idx_post_user` (`authorId`),
   KEY `idx_post_parent` (`parentId`),"
-186,"Establish foreign key constraints, linking the ""parentId"" column in the ""post"" table to the ""id"" column in the same table, and the ""authorId"" column in the ""post"" table to the ""id"" column in the ""user"" table, ensuring referential integrity between the respective columns.","CONSTRAINT `fk_post_parent` FOREIGN KEY (`parentId`) REFERENCES `post` (`id`),
+187,"Establish foreign key constraints, linking the ""parentId"" column in the ""post"" table to the ""id"" column in the same table, and the ""authorId"" column in the ""post"" table to the ""id"" column in the ""user"" table, ensuring referential integrity between the respective columns.","CONSTRAINT `fk_post_parent` FOREIGN KEY (`parentId`) REFERENCES `post` (`id`),
   CONSTRAINT `fk_post_user` FOREIGN KEY (`authorId`) REFERENCES `user` (`id`)"
-187,"Establish a foreign key constraint named ""fk_post_parent"" on the ""parentId"" column in the ""post"" table, referencing the ""id"" column in the same ""post"" table, ensuring referential integrity for the parent-child relationship.","CONSTRAINT `fk_post_parent` FOREIGN KEY (`parentId`) REFERENCES `post` (`id`),"
-188,"Create a foreign key constraint named ""fk_post_user"" on the ""authorId"" column in the ""post"" table, referencing the ""id"" column in the ""user"" table, ensuring referential integrity between the ""post"" and ""user"" tables based on the author's ID.",CONSTRAINT `fk_post_user` FOREIGN KEY (`authorId`) REFERENCES `user` (`id`)
-189,Set the storage engine for the table to InnoDB and configure the default character set to UTF-8 (utf8mb4) with a case-insensitive collation (utf8mb4_unicode_ci).,) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-190,"Lock the ""post"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post` WRITE;
-191,"Temporarily disable index updates for the ""post"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post` DISABLE KEYS */;
-192,"Re-enable indexing and key updates for the ""post"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post` ENABLE KEYS */;
-193,"Release the lock on the ""post"" table, allowing other operations to access the table.",UNLOCK TABLES;
-194,"Drop the table named ""post_category"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post_category`;
-195,Set the character encoding for the client connection to UTF-8 (utf8mb4) for proper handling of text and characters.,SET character_set_client = utf8mb4 ;
-196,"Create a table named ""post_category"" with columns for post ID and category ID, specifying their respective data types as bigint(20) and ensuring they are not null.","CREATE TABLE `post_category` (
+188,"Establish a foreign key constraint named ""fk_post_parent"" on the ""parentId"" column in the ""post"" table, referencing the ""id"" column in the same ""post"" table, ensuring referential integrity for the parent-child relationship.","CONSTRAINT `fk_post_parent` FOREIGN KEY (`parentId`) REFERENCES `post` (`id`),"
+189,"Create a foreign key constraint named ""fk_post_user"" on the ""authorId"" column in the ""post"" table, referencing the ""id"" column in the ""user"" table, ensuring referential integrity between the ""post"" and ""user"" tables based on the author's ID.",CONSTRAINT `fk_post_user` FOREIGN KEY (`authorId`) REFERENCES `user` (`id`)
+190,Set the storage engine for the table to InnoDB and configure the default character set to UTF-8 (utf8mb4) with a case-insensitive collation (utf8mb4_unicode_ci).,) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+191,"Lock the ""post"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post` WRITE;
+192,"Temporarily disable index updates for the ""post"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post` DISABLE KEYS */;
+193,"Re-enable indexing and key updates for the ""post"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post` ENABLE KEYS */;
+194,"Release the lock on the ""post"" table, allowing other operations to access the table.",UNLOCK TABLES;
+195,"Drop the table named ""post_category"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post_category`;
+196,Set the character encoding for the client connection to UTF-8 (utf8mb4) for proper handling of text and characters.,SET character_set_client = utf8mb4 ;
+197,"Create a table named ""post_category"" with columns for post ID and category ID, specifying their respective data types as bigint(20) and ensuring they are not null.","CREATE TABLE `post_category` (
   `postId` bigint(20) NOT NULL,
   `categoryId` bigint(20) NOT NULL,"
-197,"Set a composite primary key on the columns ""postId"" and ""categoryId"" in the ""post_category"" table, ensuring a unique combination of post and category IDs. Additionally, create indexes on ""categoryId"" and ""postId"" columns for efficient querying, with the ""idx_pc_post"" index set as invisible.","PRIMARY KEY (`postId`,`categoryId`),
+198,"Set a composite primary key on the columns ""postId"" and ""categoryId"" in the ""post_category"" table, ensuring a unique combination of post and category IDs. Additionally, create indexes on ""categoryId"" and ""postId"" columns for efficient querying, with the ""idx_pc_post"" index set as invisible.","PRIMARY KEY (`postId`,`categoryId`),
   KEY `idx_pc_category` (`categoryId`),
   KEY `idx_pc_post` (`postId`) /*!80000 INVISIBLE */,"
-198,"Establish a foreign key constraint named ""fk_pc_category"" on the ""categoryId"" column in the ""post_category"" table, referencing the ""id"" column in the ""category"" table, ensuring referential integrity for the relationship between posts and categories.","CONSTRAINT `fk_pc_category` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`),"
-199,"Create a foreign key constraint named ""fk_pc_post"" on the ""postId"" column in the ""post_category"" table, referencing the ""id"" column in the ""post"" table, ensuring referential integrity for the relationship between posts and post categories.",CONSTRAINT `fk_pc_post` FOREIGN KEY (`postId`) REFERENCES `post` (`id`)
-200,"Lock the ""post_category"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post_category` WRITE;
-201,"Temporarily disable index updates for the ""post_category"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post_category` DISABLE KEYS */;
-202,"Re-enable indexing and key updates for the ""post_category"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post_category` ENABLE KEYS */;
-203,"Drop the table named ""post_comment"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post_comment`;
-204,"Create a table named ""post_comment"" with columns for a unique identifier, post ID, parent comment ID, title, publication status, creation timestamp, publication timestamp, and content, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `post_comment` (
+199,"Establish a foreign key constraint named ""fk_pc_category"" on the ""categoryId"" column in the ""post_category"" table, referencing the ""id"" column in the ""category"" table, ensuring referential integrity for the relationship between posts and categories.","CONSTRAINT `fk_pc_category` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`),"
+200,"Create a foreign key constraint named ""fk_pc_post"" on the ""postId"" column in the ""post_category"" table, referencing the ""id"" column in the ""post"" table, ensuring referential integrity for the relationship between posts and post categories.",CONSTRAINT `fk_pc_post` FOREIGN KEY (`postId`) REFERENCES `post` (`id`)
+201,"Lock the ""post_category"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post_category` WRITE;
+202,"Temporarily disable index updates for the ""post_category"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post_category` DISABLE KEYS */;
+203,"Re-enable indexing and key updates for the ""post_category"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post_category` ENABLE KEYS */;
+204,"Drop the table named ""post_comment"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post_comment`;
+205,"Create a table named ""post_comment"" with columns for a unique identifier, post ID, parent comment ID, title, publication status, creation timestamp, publication timestamp, and content, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `post_comment` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `postId` bigint(20) NOT NULL,
   `parentId` bigint(20) DEFAULT NULL,
@@ -277,52 +277,52 @@ id,natural_language_query,sql_query
   `createdAt` datetime NOT NULL,
   `publishedAt` datetime DEFAULT NULL,
   `content` text COLLATE utf8mb4_unicode_ci,"
-205,"Set the ""id"" column as the primary key and define indexing keys on the ""postId"" column (marked as invisible) and the ""parentId"" column in the ""post_comment"" table for efficient querying based on post IDs and parent comment IDs.","PRIMARY KEY (`id`),
+206,"Set the ""id"" column as the primary key and define indexing keys on the ""postId"" column (marked as invisible) and the ""parentId"" column in the ""post_comment"" table for efficient querying based on post IDs and parent comment IDs.","PRIMARY KEY (`id`),
   KEY `idx_comment_post` (`postId`) /*!80000 INVISIBLE */,
   KEY `idx_comment_parent` (`parentId`),"
-206,"Establish a foreign key constraint named ""fk_comment_parent"" on the ""parentId"" column in the ""post_comment"" table, referencing the ""id"" column in the same ""post_comment"" table, ensuring referential integrity for the parent-child relationship among comments.","  CONSTRAINT `fk_comment_parent` FOREIGN KEY (`parentId`) REFERENCES `post_comment` (`id`),"
-207,"Create a foreign key constraint named ""fk_comment_post"" on the ""postId"" column in the ""post_comment"" table, referencing the ""id"" column in the ""post"" table, ensuring referential integrity between comments and their associated posts.",CONSTRAINT `fk_comment_post` FOREIGN KEY (`postId`) REFERENCES `post` (`id`)
-208,"Lock the ""post_comment"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post_comment` WRITE;
-209,"Temporarily disable index updates for the ""post_comment"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post_comment` DISABLE KEYS */;
-210,"Re-enable indexing and key updates for the ""post_comment"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post_comment` ENABLE KEYS */;
-211,"Drop the table named ""post_meta"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post_meta`;
-212,"Create a table named ""post_meta"" with columns for a unique identifier, post ID, a key (limited to 50 characters) representing metadata, and content, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `post_meta` (
+207,"Establish a foreign key constraint named ""fk_comment_parent"" on the ""parentId"" column in the ""post_comment"" table, referencing the ""id"" column in the same ""post_comment"" table, ensuring referential integrity for the parent-child relationship among comments.","  CONSTRAINT `fk_comment_parent` FOREIGN KEY (`parentId`) REFERENCES `post_comment` (`id`),"
+208,"Create a foreign key constraint named ""fk_comment_post"" on the ""postId"" column in the ""post_comment"" table, referencing the ""id"" column in the ""post"" table, ensuring referential integrity between comments and their associated posts.",CONSTRAINT `fk_comment_post` FOREIGN KEY (`postId`) REFERENCES `post` (`id`)
+209,"Lock the ""post_comment"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post_comment` WRITE;
+210,"Temporarily disable index updates for the ""post_comment"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post_comment` DISABLE KEYS */;
+211,"Re-enable indexing and key updates for the ""post_comment"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post_comment` ENABLE KEYS */;
+212,"Drop the table named ""post_meta"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post_meta`;
+213,"Create a table named ""post_meta"" with columns for a unique identifier, post ID, a key (limited to 50 characters) representing metadata, and content, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `post_meta` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `postId` bigint(20) NOT NULL,
   `key` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci,"
-213,"Set the ""id"" column as the primary key and define a unique key ""uq_post_meta"" on the combination of ""postId"" and ""key"" (marked as invisible) for the ""post_meta"" table, ensuring a unique combination of post and metadata keys. Additionally, create an index on the ""postId"" column for efficient querying based on post IDs.","PRIMARY KEY (`id`),
+214,"Set the ""id"" column as the primary key and define a unique key ""uq_post_meta"" on the combination of ""postId"" and ""key"" (marked as invisible) for the ""post_meta"" table, ensuring a unique combination of post and metadata keys. Additionally, create an index on the ""postId"" column for efficient querying based on post IDs.","PRIMARY KEY (`id`),
   UNIQUE KEY `uq_post_meta` (`postId`,`key`) /*!80000 INVISIBLE */,
   KEY `idx_meta_post` (`postId`),"
-214,"Create a foreign key constraint named ""fk_meta_post"" on the ""postId"" column in the ""post_meta"" table, referencing the ""id"" column in the ""post"" table, ensuring referential integrity between post metadata and their associated posts.", CONSTRAINT `fk_meta_post` FOREIGN KEY (`postId`) REFERENCES `post` (`id`)
-215,"Lock the ""post_meta"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post_meta` WRITE;
-216,"Temporarily disable index updates for the ""post_meta"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post_meta` DISABLE KEYS */;
-217,"Re-enable indexing and key updates for the ""post_meta"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post_meta` ENABLE KEYS */;
-218,"Drop the table named ""post_tag"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post_tag`;
-219,"Create a table named ""post_tag"" with columns for post ID and tag ID, specifying their respective data types as bigint(20) and ensuring they are not null.","CREATE TABLE `post_tag` (
+215,"Create a foreign key constraint named ""fk_meta_post"" on the ""postId"" column in the ""post_meta"" table, referencing the ""id"" column in the ""post"" table, ensuring referential integrity between post metadata and their associated posts.", CONSTRAINT `fk_meta_post` FOREIGN KEY (`postId`) REFERENCES `post` (`id`)
+216,"Lock the ""post_meta"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post_meta` WRITE;
+217,"Temporarily disable index updates for the ""post_meta"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post_meta` DISABLE KEYS */;
+218,"Re-enable indexing and key updates for the ""post_meta"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post_meta` ENABLE KEYS */;
+219,"Drop the table named ""post_tag"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `post_tag`;
+220,"Create a table named ""post_tag"" with columns for post ID and tag ID, specifying their respective data types as bigint(20) and ensuring they are not null.","CREATE TABLE `post_tag` (
   `postId` bigint(20) NOT NULL,
   `tagId` bigint(20) NOT NULL,"
-220,"Create a table named ""post_tag"" with columns for post ID and tag ID, specifying their respective data types as bigint(20) and ensuring they are not null.","PRIMARY KEY (`postId`,`tagId`),
+221,"Create a table named ""post_tag"" with columns for post ID and tag ID, specifying their respective data types as bigint(20) and ensuring they are not null.","PRIMARY KEY (`postId`,`tagId`),
   KEY `idx_pt_tag` (`tagId`),
   KEY `idx_pt_post` (`postId`),"
-221,"Create a foreign key constraint named ""fk_pt_post"" on the ""postId"" column in the ""post_tag"" table, referencing the ""id"" column in the ""post"" table, ensuring referential integrity between post tags and their associated posts.","CONSTRAINT `fk_pt_post` FOREIGN KEY (`postId`) REFERENCES `post` (`id`),"
-222,"Create a foreign key constraint named ""fk_pt_tag"" on the ""tagId"" column in the ""post_tag"" table, referencing the ""id"" column in the ""tag"" table, ensuring referential integrity between post tags and their associated tags.",CONSTRAINT `fk_pt_tag` FOREIGN KEY (`tagId`) REFERENCES `tag` (`id`)
-223,"Lock the ""post_tag"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post_tag` WRITE;
-224,"Temporarily disable index updates for the ""post_tag"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post_tag` DISABLE KEYS */;
-225,"Re-enable indexing and key updates for the ""post_tag"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post_tag` ENABLE KEYS */;
-226,"Drop the table named ""tag"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `tag`;
-227,"Create a table named ""tag"" with columns for a unique identifier, title, metadata title, slug, and content, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `tag` (
+222,"Create a foreign key constraint named ""fk_pt_post"" on the ""postId"" column in the ""post_tag"" table, referencing the ""id"" column in the ""post"" table, ensuring referential integrity between post tags and their associated posts.","CONSTRAINT `fk_pt_post` FOREIGN KEY (`postId`) REFERENCES `post` (`id`),"
+223,"Create a foreign key constraint named ""fk_pt_tag"" on the ""tagId"" column in the ""post_tag"" table, referencing the ""id"" column in the ""tag"" table, ensuring referential integrity between post tags and their associated tags.",CONSTRAINT `fk_pt_tag` FOREIGN KEY (`tagId`) REFERENCES `tag` (`id`)
+224,"Lock the ""post_tag"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `post_tag` WRITE;
+225,"Temporarily disable index updates for the ""post_tag"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `post_tag` DISABLE KEYS */;
+226,"Re-enable indexing and key updates for the ""post_tag"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `post_tag` ENABLE KEYS */;
+227,"Drop the table named ""tag"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `tag`;
+228,"Create a table named ""tag"" with columns for a unique identifier, title, metadata title, slug, and content, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `tag` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `title` varchar(75) COLLATE utf8mb4_unicode_ci NOT NULL,
   `metaTitle` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci,"
-228,"Set the ""id"" column as the primary key in the ""tag"" table, ensuring a unique identifier for each record.",PRIMARY KEY (`id`)
-229,"Lock the ""tag"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `tag` WRITE;
-230,"Temporarily disable index updates for the ""tag"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `tag` DISABLE KEYS */;
-231,"Re-enable indexing and key updates for the ""tag"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `tag` ENABLE KEYS */;
-232,"Drop the table named ""user"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `user`;
-233,"Create a table named ""user"" with columns for a unique identifier, first name, middle name, last name, mobile number, email, password hash, registration timestamp, last login timestamp, introduction, and profile, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `user` (
+229,"Set the ""id"" column as the primary key in the ""tag"" table, ensuring a unique identifier for each record.",PRIMARY KEY (`id`)
+230,"Lock the ""tag"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `tag` WRITE;
+231,"Temporarily disable index updates for the ""tag"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `tag` DISABLE KEYS */;
+232,"Re-enable indexing and key updates for the ""tag"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `tag` ENABLE KEYS */;
+233,"Drop the table named ""user"" if it exists, removing it from the database.",DROP TABLE IF EXISTS `user`;
+234,"Create a table named ""user"" with columns for a unique identifier, first name, middle name, last name, mobile number, email, password hash, registration timestamp, last login timestamp, introduction, and profile, specifying their respective data types and character set (UTF-8) and collation (utf8mb4_unicode_ci) settings.","CREATE TABLE `user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `firstName` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `middleName` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -334,22 +334,21 @@ id,natural_language_query,sql_query
   `lastLogin` datetime DEFAULT NULL,
   `intro` tinytext COLLATE utf8mb4_unicode_ci,
   `profile` text COLLATE utf8mb4_unicode_ci,"
-234,"Set the ""id"" column as the primary key and define unique keys on the ""mobile"" and ""email"" columns in the ""user"" table, ensuring a unique mobile number and email for each user.","PRIMARY KEY (`id`),
+235,"Set the ""id"" column as the primary key and define unique keys on the ""mobile"" and ""email"" columns in the ""user"" table, ensuring a unique mobile number and email for each user.","PRIMARY KEY (`id`),
   UNIQUE KEY `uq_mobile` (`mobile`),
   UNIQUE KEY `uq_emai` (`email`)"
-235,"Lock the ""user"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `user` WRITE;
-236,"Temporarily disable index updates for the ""user"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-237,"Re-enable indexing and key updates for the ""user"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-238,"Release the lock on the ""user"" table, allowing other operations to access the table.",UNLOCK TABLES;
-239,Restore the previous time zone setting.,/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-240,Restore the SQL mode to its previous value.,/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-241,Restore foreign key checks to their previous value.,/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-242,Restore unique checks to their previous value.,/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-243,Restore the character set for the client to its previous value.,/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-244,Restore the character set for results to its previous value.,/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-245,Restore collation connection to its previous value.,/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-246,Restore SQL notes to their previous value.,/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-247,,
+236,"Lock the ""user"" table for writing, allowing exclusive access to perform write operations.",LOCK TABLES `user` WRITE;
+237,"Temporarily disable index updates for the ""user"" table to optimize bulk insertion or updates.",/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+238,"Re-enable indexing and key updates for the ""user"" table after the bulk operations are complete.",/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+239,"Release the lock on the ""user"" table, allowing other operations to access the table.",UNLOCK TABLES;
+240,Restore the previous time zone setting.,/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+241,Restore the SQL mode to its previous value.,/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+242,Restore foreign key checks to their previous value.,/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+243,Restore unique checks to their previous value.,/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+244,Restore the character set for the client to its previous value.,/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+245,Restore the character set for results to its previous value.,/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+246,Restore collation connection to its previous value.,/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+247,Restore SQL notes to their previous value.,/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 248,,
 249,,
 250,,
@@ -399,7 +398,8 @@ id,natural_language_query,sql_query
 294,,
 295,,
 296,,
-297,,
+287,,
 298,,
 299,,
 300,,
+301,,
