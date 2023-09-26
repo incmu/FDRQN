@@ -25,7 +25,6 @@ class CustomRewardCallback(Callback):
 
         X_val, y_val = self.validation_data
 
-
         # Check the shape of y_val and flatten if necessary
         if len(y_val.shape) > 1 and y_val.shape[1] > 1:
             y_val = np.argmax(y_val, axis=1)
@@ -34,9 +33,14 @@ class CustomRewardCallback(Callback):
 
         # Reshape the input data if the model is an RNN
         if self.is_rnn:
-            num_samples, timesteps, num_features = X_val.shape
-            timesteps = 1  # Set it to the correct value
-            num_features_per_timestep = num_features // timesteps
+            num_samples = X_val.shape[0]
+            num_elements = X_val.size
+            timesteps = num_elements // num_samples
+            num_features_per_timestep = 1  # assuming 1 feature per timestep
+
+            # Ensure that the reshape is valid
+            assert num_samples * timesteps * num_features_per_timestep == num_elements
+
             X_val = np.reshape(X_val, (num_samples, timesteps, num_features_per_timestep))
 
         y_pred = self.model.predict(X_val)

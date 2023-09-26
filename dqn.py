@@ -8,7 +8,7 @@ from keras.models import load_model
 
 from enivornment_gym import BankEnv
 from data_preprocessing import preprocess_data
-from RNN import train_rnn
+
 
 X_train, X_test, y_train, y_test, X_val, y_val = preprocess_data()
 
@@ -27,17 +27,19 @@ class QNetwork(Model):
 
 
 class DQNAgent:
-    def __init__(self, action_size, state_shape, rnn_model):
+    def __init__(self, action_size, state_shape, rnn_model, load_path=None):
         self.rnn_model = rnn_model
         self.q_network = QNetwork(action_size, state_shape)
+        if load_path:
+            self.q_network.load_weights('dqn_model/dqn_model_weights_.keras')
         self.optimizer = Adam(learning_rate=1e-3)
         self.criterion = tf.keras.losses.MeanSquaredError()
 
     def learn(self, state, action, reward, next_state, done, gamma=0.99):
         print("Preprocessing state and next_state with RNN model...")
-        state = state.reshape((1, 1, -1))
+        state = state.reshape((1, 51, 1))
         state = self.rnn_model.predict(state)
-        next_state = next_state.reshape((1, 1, -1))
+        next_state = next_state.reshape((1, 51, 1))
         next_state = self.rnn_model.predict(next_state)
 
         print("Calculating loss and applying gradients...")
@@ -60,14 +62,14 @@ def initialize_environment_and_agent():
     state_shape = env.observation_space.shape
 
     print("Loading the RNN model...")
-    load_path ="rnn_model/best_rnn.h5"
+    load_path ="rnn_model/best_rnn.keras"
     best_rnn_model = load_model(load_path)
 
     dqn_agent = DQNAgent(action_size, state_shape, best_rnn_model)
     return env, dqn_agent
 
 
-def train_dqn_agent(env, dqn_agent, num_episodes=1000, gamma=0.99):
+def train_dqn_agent(env, dqn_agent, num_episodes=1000, gamma=0.99, save_interval = 100):
     print("Training DQN agent...")
     for episode in range(num_episodes):
         print(f"Episode {episode + 1}/{num_episodes}")
@@ -79,6 +81,10 @@ def train_dqn_agent(env, dqn_agent, num_episodes=1000, gamma=0.99):
             dqn_agent.learn(np.array([state]), np.array([action]), np.array([reward]), np.array([next_state]), done,
                             gamma)
             state = next_state
+            # Save the model at regular intervals and at the end of training
+            if (episode + 1) % save_interval == 0 or episode == num_episodes - 1:
+                dqn_agent.q_network.save_weights(f'dqn_model/dqn_model_weights_{episode + 1}.keras')
+                print(f"Saved DQN model weights at episode {episode + 1}")
     print("Training of the DQN agent is complete!")
 
 if __name__ == "__main__":

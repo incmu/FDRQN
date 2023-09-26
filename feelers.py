@@ -1,3 +1,4 @@
+import keras
 import numpy as np
 import pandas as pd
 import tensorflow as tf
@@ -6,10 +7,13 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras.optimizers import Adam
 from keras.callbacks import LearningRateScheduler
-from keras.src.layers import BatchNormalization
+from keras.layers import BatchNormalization
+from keras.src.layers import Reshape
 
 from custom_callback import CustomRewardCallback
 from data_preprocessing import preprocess_data
+from dqn import DQNAgent
+from enivornment_gym import BankEnv
 
 # Set random seed for reproducibility
 np.random.seed(0)
@@ -24,7 +28,6 @@ y_train = y_train.astype(np.int32)
 X_val = X_val.astype(np.float32)
 y_val = y_val.astype(np.int32)
 
-
 # Initialization
 ensemble = []
 num_feelers = 8
@@ -33,6 +36,25 @@ alpha = 1.0
 beta = 0.5
 memory = []
 
+def load_dqn_agent():
+    # Initialize the environment and get the action size and state shape
+    env = BankEnv()
+    action_size = env.action_space.n
+    state_shape = env.observation_space.shape
+
+    # Specify the path to load the DQN model weights
+    load_dqn_agent = 'dqn_model/dqn_model_weights_.keras'
+
+    try:
+        # Try to instantiate the DQNAgent with the loaded model weights
+        dqn_agent = DQNAgent(action_size, state_shape, load_dqn_agent)
+        print("DQN model weights loaded successfully!")
+        return dqn_agent  # Return the loaded agent
+    except (FileNotFoundError, Exception) as e:
+        # If loading fails, print an error message and instantiate the DQNAgent without loading the weights
+        print(f"Failed to load DQN model weights: {e}")
+        print("Initializing DQNAgent without pre-trained weights.")
+        return None
 
 # Ensemble Prediction Function
 def ensemble_predict(ensemble, X):
@@ -56,8 +78,7 @@ def scheduler(epoch, lr):
     else:
         return lr * 0.9
 
-
-def create_feeler_model(input_shape, num_classes):
+def create_feeler_model(input_shape, num_classes, reshaped_output_shape):
     model = Sequential([
         # Input layer
         Dense(512, activation='tanh', kernel_initializer="he_uniform",
@@ -70,15 +91,16 @@ def create_feeler_model(input_shape, num_classes):
         Dropout(0.1),
         BatchNormalization(),
 
+        # Reshape layer
+        Reshape(target_shape=reshaped_output_shape),
+
         # Output layer
         Dense(num_classes, kernel_initializer="he_uniform", activation='softmax')
     ])
 
     return model
 
-
 def train_feelers(X_train, y_train, X_val, y_val, num_feelers, learning_rate, scheduler, alpha, beta, memory):
-    ensemble
     lr_schedule_callback = LearningRateScheduler(scheduler)
     reward_callback = CustomRewardCallback(validation_data=(X_val, y_val), alpha=alpha, beta=beta,
                                            memory=memory, is_rnn=False)
@@ -86,49 +108,36 @@ def train_feelers(X_train, y_train, X_val, y_val, num_feelers, learning_rate, sc
     input_shape = (X_train.shape[1],)
     num_classes = len(np.unique(y_train))
 
+    # Create a list to store the top 4 FNN models with the highest accuracy
+    top_models = []
+    top_accuracies = []
+    reshaped_output_shape =(128,)
     for i in range(num_feelers):
         print(f"Training model {i + 1}/{num_feelers}")
-        model = create_feeler_model(input_shape, num_classes)
+        model = create_feeler_model(input_shape, num_classes, reshaped_output_shape)
         model.compile(optimizer=Adam(learning_rate=learning_rate),
                       loss='sparse_categorical_crossentropy', metrics=['accuracy'])
         model.fit(X_train, y_train, epochs=1, batch_size=32, validation_data=(X_val, y_val),
                   callbacks=[lr_schedule_callback, reward_callback])
-        ensemble.append(model)
 
-def get_top_feelers():
-    ensemble
-    rewards = [evaluate_ensemble([model], X_test, y_test) for model in ensemble]
-    top_indices = np.argsort(rewards)[-4:]
-    return [ensemble[i] for i in top_indices]
+        loss, accuracy = model.evaluate(X_val, y_val)
+        print(f"FNN Loss: {loss}")
+        print(f"FNN Accuracy: {accuracy}")
 
+        # Keep track of the top 4 models with the highest accuracy
+        if len(top_models) < 4:
+            top_models.append(model)
+            top_accuracies.append(accuracy)
+        else:
+            min_accuracy_index = np.argmin(top_accuracies)
+            if accuracy > top_accuracies[min_accuracy_index]:
+                top_models[min_accuracy_index] = model
+                top_accuracies[min_accuracy_index] = accuracy
 
-if __name__ == "__main__":
-    # ... (your existing code for tuning and printing optimal number of layers)
+    # Save the top 4 FNN models
+    for i, model in enumerate(top_models):
+        save_path = f"fnn_model/best_fnn_{i+1}.keras"
+        model.save(save_path)
 
-    # Assuming best_models is a list containing your 16 trained models
-    best_models = get_top_feelers()  # replace with actual list of your models
+    return top_models
 
-    from sklearn.metrics import classification_report, confusion_matrix
-    import seaborn as sns
-    import matplotlib.pyplot as plt
-
-    for i, model in enumerate(best_models):
-        print(f"Evaluating Model {i + 1}")
-
-        # Predict the classes of the test set
-        y_pred = model.predict(X_test)
-        y_pred_classes = np.argmax(y_pred, axis=1)
-
-        # 1. Print Classification Report for Precision, Recall, and F1-Score
-        print(classification_report(y_test, y_pred_classes))
-
-        # 2. Generate and visualize the Confusion Matrix
-        cm = confusion_matrix(y_test, y_pred_classes)
-
-        # Visualize the confusion matrix using seaborn heatmap
-        plt.figure(figsize=(10, 7))
-        sns.heatmap(cm, annot=True, fmt="d")
-        plt.xlabel('Predicted')
-        plt.ylabel('Truth')
-        plt.title(f'Model {i + 1} - Confusion Matrix')
-        plt.show()
