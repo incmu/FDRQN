@@ -11,7 +11,7 @@ from keras.layers import BatchNormalization
 from keras.src.layers import Reshape
 
 from custom_callback import CustomRewardCallback
-from data_preprocessing import preprocess_data
+from data_preprocessing import preprocessor
 from dqn import DQNAgent
 from enivornment_gym import BankEnv
 
@@ -21,7 +21,7 @@ tf.random.set_seed(0)
 random.seed(0)
 
 # Preprocess data and label encode target variable
-X_train, X_test, y_train, y_test, X_val, y_val = preprocess_data()
+X_train, X_test, y_train, y_test, X_val, y_val = preprocessor()
 # Assuming X_train is a DataFrame
 X_train = X_train.astype(np.float32)
 y_train = y_train.astype(np.int32)
@@ -116,7 +116,7 @@ def train_feelers(X_train, y_train, X_val, y_val, num_feelers, learning_rate, sc
         print(f"Training model {i + 1}/{num_feelers}")
         model = create_feeler_model(input_shape, num_classes, reshaped_output_shape)
         model.compile(optimizer=Adam(learning_rate=learning_rate),
-                      loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+                      loss='categorical_crossentropy', metrics=['accuracy'])
         model.fit(X_train, y_train, epochs=1, batch_size=32, validation_data=(X_val, y_val),
                   callbacks=[lr_schedule_callback, reward_callback])
 

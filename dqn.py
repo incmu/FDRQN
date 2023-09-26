@@ -7,16 +7,16 @@ import matplotlib.pyplot as plt
 from keras.models import load_model
 
 from enivornment_gym import BankEnv
-from data_preprocessing import preprocess_data
 
 
-X_train, X_test, y_train, y_test, X_val, y_val = preprocess_data()
+
+
 
 
 class QNetwork(Model):
     def __init__(self, action_size, input_shape):
         super(QNetwork, self).__init__()
-        self.dense1 = Dense(24, activation='relu', input_shape=input_shape)
+        self.dense1 = Dense(24, activation='relu', input_shape=(51,))
         self.dense2 = Dense(24, activation='relu')
         self.dense3 = Dense(action_size, activation='linear')
 

@@ -1,11 +1,32 @@
 import matplotlib.pyplot as plt
 import gym
-import feelers
-from RNN import train_rnn, preprocess_data
-import dqn  # Importing the dqn module
+#import feelers
+#from RNN import train_rnn, preprocessor
+#import dqn  # Importing the dqn module
+from nlp import train_nlp
+
+#NLP
+# Call the function to train the NLP model
+nlp_model = train_nlp()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Preprocess data and get training, validation, and test sets
-X_train, X_test, y_train, y_test, X_val, y_val = preprocess_data()
+X_train, X_test, y_train, y_test, X_val, y_val = preprocessor()
 print("|*********************************|\n"
       "|*********************************|\n"
       "|*********************************|\n"

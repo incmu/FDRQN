@@ -1,53 +1,53 @@
 import numpy as np
+import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder, StandardScaler, LabelEncoder
-from ucimlrepo import fetch_ucirepo
+from sklearn.pipeline import Pipeline
 
-
-def preprocess_data():
-    # Fetch dataset
-    dry_bean_dataset = fetch_ucirepo(id=222)
-
-    # Data as pandas dataframes
-    X = dry_bean_dataset.data.features
-    y = dry_bean_dataset.data.targets
+def preprocessor():
+    # Assuming your data file is a CSV
+    data_file_path = 'datasets/js_dataset/javas.csv'
+    df = pd.read_csv(data_file_path, delimiter=';')
 
     # Identify categorical columns
-    categorical_cols = X.select_dtypes(include=['object']).columns.tolist()
+    categorical_cols = df.select_dtypes(include=['object']).columns.tolist()
 
-    # Initialize ColumnTransformer with OneHotEncoder for categorical columns and StandardScaler for the rest
+    # Remove target column from the list of categorical columns
+    categorical_cols.remove('y')
+
+    # Define the preprocessing for numeric and categorical features
+    numeric_features = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
+    numeric_transformer = StandardScaler()
+
+    categorical_transformer = Pipeline(steps=[
+        ('onehot', OneHotEncoder(handle_unknown='ignore'))
+    ])
+
+    # We create the column transformer that will allow us to preprocess the data
     preprocessor = ColumnTransformer(
         transformers=[
-            ('cat', OneHotEncoder(), categorical_cols),
-            ('num', StandardScaler(), X.columns.difference(categorical_cols))
+            ('num', numeric_transformer, numeric_features),
+            ('cat', categorical_transformer, categorical_cols)
         ])
 
-    # Split the data into training, validation, and test sets
-    X_temp, X_test, y_temp, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    X_train, X_val, y_train, y_val = train_test_split(X_temp, y_temp, test_size=0.2, random_state=42)
+    # We will preprocess the data
+    X = df.drop('y', axis=1)
+    y = df['y']
 
-    # Apply transformations to X_train, X_val, and X_test
-    X_train = preprocessor.fit_transform(X_train).astype(np.float32)
-    X_val = preprocessor.transform(X_val).astype(np.float32)
-    X_test = preprocessor.transform(X_test).astype(np.float32)
+    # We will split the data
+    X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.3, random_state=42)
+    X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
 
-    # Label encode y
-    label_encoder = LabelEncoder()
-    y_train = label_encoder.fit_transform(y_train).reshape(-1)
-    y_val = label_encoder.transform(y_val).reshape(-1)
-    y_test = label_encoder.transform(y_test).reshape(-1)
+    # Applying transformations to X_train, X_val, and X_test
+    X_train = preprocessor.fit_transform(X_train)
+    X_val = preprocessor.transform(X_val)
+    X_test = preprocessor.transform(X_test)
+
+    # Encoding the target variable
+    encoder = OneHotEncoder()
+    y_train = encoder.fit_transform(y_train.values.reshape(-1, 1)).toarray()
+    y_val = encoder.transform(y_val.values.reshape(-1, 1)).toarray()
+    y_test = encoder.transform(y_test.values.reshape(-1, 1)).toarray()
 
     return X_train, X_test, y_train, y_test, X_val, y_val
-
-
-# Example usage
-#X_train, X_test, y_train, y_test, X_val, y_val = preprocess_data()
-
-# Print shapes and types for verification
-#print("X_train type and shape:", type(X_train), X_train.shape)
-#print("y_train type and shape:", type(y_train), y_train.shape)
-#print("X_val type and shape:", type(X_val), X_val.shape)
-#print("y_val type and shape:", type(y_val), y_val.shape)
-#print("X_test type and shape:", type(X_test), X_test.shape)
-#print("y_test type and shape:", type(y_test), y_test.shape)

@@ -1,3 +1,4 @@
+0,nlp language,target_variable
 1,Create a variable named variableName and assign it the value value.,let variableName = value;
 2,"Check if a condition is true, perform actionIfTrue if true, and actionIfFalse if false.",if (condition) { actionIfTrue; } else { actionIfFalse; }
 3,Repeat a set of actions a specified number of times based on the value of length.,for (let i = 0; i < length; i++) { // loop actions }

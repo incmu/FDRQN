@@ -8,7 +8,7 @@ from keras.utils import to_categorical
 import numpy as np
 
 from custom_callback import CustomRewardCallback
-from data_preprocessing import preprocess_data
+from data_preprocessing import preprocessor
 from keras.models import load_model  # Import load_model
 
 # Initialization
@@ -18,7 +18,7 @@ learning_rate = 0.0001
 memory = []
 
 # Preprocess data
-X_train, X_test, y_train, y_test, X_val, y_val = preprocess_data()
+X_train, X_test, y_train, y_test, X_val, y_val = preprocessor()
 X_train = np.reshape(X_train, (X_train.shape[0], 1, X_train.shape[1]))
 X_val = np.reshape(X_val, (X_val.shape[0], 1, X_val.shape[1]))
 
@@ -37,13 +37,13 @@ def create_rnn_model(num_classes):
     input_shape = sample_fnn_model.layers[-2].output_shape[1:]
 
     # Adjust the input shape for LSTM
-    input_shape = (51, 1)
+    input_shape=(512,3)
 
     model = Sequential()
 
     # Add the initial LSTM layers
-    model.add(LSTM(128, activation='tanh', input_shape=input_shape, return_sequences=True))
-    model.add(LSTM(128, activation='tanh'))
+    model.add(LSTM(512, activation='tanh', input_shape=input_shape, return_sequences=True))
+
 
     # Load the paths of the top FNN models
     top_fnn_models_paths = [
@@ -117,7 +117,7 @@ def train_rnn(X_train, y_train, X_val, y_val):
         print("Training RNN...")
         reward_callback = CustomRewardCallback(validation_data=(X_val, y_val), alpha=alpha, beta=beta, episode=episode,
                                                memory=memory, is_rnn=True)
-        optimizer = RMSprop(learning_rate=0.0001)
+        optimizer = RMSprop(learning_rate=learning_rate)
         rnn_model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
         history = rnn_model.fit(X_train, y_train, epochs=1, batch_size=32, validation_data=(X_val, y_val),
                                 callbacks=[EarlyStopping(patience=3), reward_callback, lr_schedule_callback])
@@ -146,7 +146,7 @@ def train_rnn(X_train, y_train, X_val, y_val):
             validation_losses.extend(history.history['val_loss'])
 
             last_reward = latest_reward
-            if latest_reward >= 6221:  # Threshold for your task
+            if latest_reward >= 4787.317881171311:  # Threshold for your task
                 learning_rate *= 1.2
             else:
                 learning_rate *= 0.5

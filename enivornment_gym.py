@@ -5,14 +5,14 @@ from keras import backend as K
 from keras.optimizers import Adam
 from sklearn.metrics import precision_score
 
-from data_preprocessing import preprocess_data
+from data_preprocessing import preprocessor
 
 
 class BankEnv(gym.Env):
     def __init__(self):
         super(BankEnv, self).__init__()
 
-        X_train, X_test, y_train, y_test, X_val, y_val = preprocess_data()
+        X_train, X_test, y_train, y_test, X_val, y_val = preprocessor()
 
         self.X = X_train
         self.y = y_train

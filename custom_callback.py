@@ -74,9 +74,9 @@ class CustomRewardCallback(Callback):
 
         # Dynamic learning rate adjustment based on R_t
         current_lr = K.get_value(self.model.optimizer.lr)
-        if R_t > 6000:
+        if R_t > 4787.319567338135:
             new_lr = current_lr * 1.1  # Increase learning rate
-        elif R_t < 5150:
+        elif R_t < 4265.283841154123:
             new_lr = current_lr * 0.9  # Decrease learning rate
         else:
             new_lr = current_lr  # Keep learning rate constant
