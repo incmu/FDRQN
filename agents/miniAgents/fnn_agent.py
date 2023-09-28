@@ -1,7 +1,7 @@
 import numpy as np
 from models.fnn.fnn_model import FNNModel
 from preprocessing.fnn_data import load_and_preprocess_data
-from environment import environment
+from environments import db_environment
 
 
 class FNNAgent:
@@ -15,24 +15,24 @@ class FNNAgent:
         """
         Uses the model to make a decision based on the current state.
 
-        :param state: The current state of the environment.
+        :param state: The current state of the environments.
         :return: The action selected by the agent.
         """
         # Retrieve the preprocessed data corresponding to the state
         processed_state = self.get_preprocessed_data_for_state(state)
 
         # Use the FNN model to make a prediction
-        action = self.model.predict(processed_state)
-        return action
+        action,confidence = self.model.predict(processed_state)
+        return action, confidence
 
     def learn(self, state, action, reward, next_state):
         """
         Updates the model based on the received reward and the transition dynamics.
 
-        :param state: The current state of the environment.
+        :param state: The current state of the environments.
         :param action: The action taken by the agent.
         :param reward: The reward received for taking the action.
-        :param next_state: The next state of the environment after taking the action.
+        :param next_state: The next state of the environments after taking the action.
         """
         # Retrieve the preprocessed data corresponding to the states
         processed_state = self.get_preprocessed_data_for_state(state)
@@ -47,7 +47,7 @@ class FNNAgent:
         """
         Retrieves the preprocessed data corresponding to the given state.
 
-        :param state: The original state from the environment.
+        :param state: The original state from the environments.
         :return: The preprocessed data for the state.
         """
         # Assuming state can be used as an index to retrieve the corresponding preprocessed data

@@ -1,8 +1,8 @@
-from agents.rnn_agent import RNNModelAgent
-from agents.dqn_agent import DQNAgent
-from agents.fnn_agent import FNNAgent
-from agents.nlp_agent import NLPAgent  # Assuming you have this file.
-from environment import reward
+from agents.miniAgents.rnn_agent import RNNModelAgent
+from agents.miniAgents.ppo_agent import DQNAgent
+from agents.miniAgents.fnn_agent import FNNAgent
+from agents.miniAgents.nlp_agent import NLPAgent  # Assuming you have this file.
+from environments import reward
 
 
 class CommunicationManager:

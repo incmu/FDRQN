@@ -40,6 +40,6 @@ class ProgrammingEnv(gym.Env):
         return self.dataset[0][0]
 
     def render(self, mode='human'):
-        # Render the environment to the screen
+        # Render the environments to the screen
         # In this example, we will simply print the current instruction
         print(self.dataset[self.current_index][0])

@@ -1,5 +1,5 @@
-from agents.nlp_agent import NLPAgent
-from agents.rnn_agent import RNNModelAgent
+from agents.miniAgents.nlp_agent import NLPAgent
+from agents.miniAgents.rnn_agent import RNNModelAgent
 
 
 class NLNNAgent:
@@ -11,22 +11,22 @@ class NLNNAgent:
 
     def act(self, state):
         # Process the state using both agents and decide the action
-        nlp_action = self.nlp_agent.act(state)
-        rnn_action = self.rnn_agent.act(state)
+        nlp_action, nlp_confidence = self.nlp_agent.act(state)
+        rnn_action, rnn_confidence = self.rnn_agent.act(state)
 
-        # Combine, compare or evaluate both actions and decide the final action
-        # This is where you decide how to merge the results of both agents to make a final decision
-        final_action = self.evaluate_actions(nlp_action, rnn_action)
+        # Combine, compare, or evaluate both actions and decide the final action
+        final_action = self.evaluate_actions(nlp_action, nlp_confidence, rnn_action, rnn_confidence)
         return final_action
 
-    def evaluate_actions(self, nlp_action, rnn_action):
-        # Define the logic to evaluate and combine the actions suggested by both agents
-        # For example, you might average them, choose the one with higher confidence, or any other logic you find suitable.
-        # ...
-        combined_action = ...
-        return combined_action
+    def evaluate_actions(self, nlp_action, nlp_confidence, rnn_action, rnn_confidence):
+        # Compare the confidence levels of the two actions and return the one with higher confidence
+        if nlp_confidence >= rnn_confidence:
+            return nlp_action
+        else:
+            return rnn_action
 
     def learn(self, state, action, reward, next_state):
         # Let both agents learn from the experience
         self.nlp_agent.learn(state, action, reward, next_state)
         self.rnn_agent.learn(state, action, reward, next_state)
+
