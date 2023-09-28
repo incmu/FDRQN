@@ -13,7 +13,7 @@ class NLPModel:
     def build_model(self):
         model = Sequential()
         model.add(Embedding(input_dim=self.vocab_size, output_dim=self.embedding_dim, input_length=self.input_length))
-        model.add(LSTM(units=512, activation='tanh', kernel_initializer='he_uniform', kernel_regularizer='l2'))
+        model.add(LSTM(units=512, activation='tanh', kernel_initializer='he_uniform', kernel_regularizer=tf.keras.regularizers.l2(0.01)))  # Updated kernel_regularizer
         model.add(Dense(self.num_classes, activation='softmax'))
         model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
         return model
@@ -24,11 +24,4 @@ class NLPModel:
     def predict(self, input_data):
         return self.model.predict(input_data)
 
-# Example of usage
-model_config = {
-    "vocab_size": 5000,
-    "embedding_dim": 64,
-    "input_length": 120,
-    "num_classes": 3
-}
-nlp_model = NLPModel(model_config=model_config)
+

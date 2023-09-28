@@ -23,3 +23,4 @@ class RNNModel:
     def predict(self, input_data):
         # Make predictions using the trained RNN model
         return self.model.predict(input_data)
+

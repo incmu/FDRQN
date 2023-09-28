@@ -1,15 +1,15 @@
 import numpy as np
 from models.fnn.fnn_model import FNNModel
 from preprocessing.fnn_data import load_and_preprocess_data
-from environment import reward
+from environment import environment
 
 
 class FNNAgent:
-    def __init__(self, model_config, environment, data_file_path, reward_config):
-        self.model = FNNModel(model_config=model_config)
+    def __init__(self, model_config, environment, data_file_path):
+        FNNModel(input_dim=model_config['input_dim'], num_classes=model_config['num_classes'])
         self.environment = environment
         self.preprocessed_data = load_and_preprocess_data(data_file_path)
-        self.reward_callback = reward(validation_data=self.preprocessed_data, **reward_config)
+
 
     def act(self, state):
         """
@@ -38,11 +38,10 @@ class FNNAgent:
         processed_state = self.get_preprocessed_data_for_state(state)
         processed_next_state = self.get_preprocessed_data_for_state(next_state)
 
-        # Define the custom reward callback
-        reward_callback = reward(validation_data=(processed_state, action))
+
 
         # Perform learning/updating of the model with the reward callback
-        self.model.train(processed_state, action, reward, processed_next_state, callbacks=[reward_callback])
+        self.model.train(processed_state, action, processed_next_state)
 
     def get_preprocessed_data_for_state(self, state):
         """

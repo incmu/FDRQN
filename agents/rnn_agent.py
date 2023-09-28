@@ -4,11 +4,13 @@ from preprocessing.rnn_data import load_and_preprocess_data
 from environment import reward
 
 class RNNModelAgent:
-    def __init__(self, model_config, environment, data_file_path, reward_config):
-        self.model = RNNModel(model_config=model_config)
+    def __init__(self, model_config, environment, data_file_path):
+        # Assuming model_config is a dictionary containing the 'input_shape' and 'num_classes' keys
+        self.model = RNNModel(input_shape=model_config['input_shape'], num_classes=model_config['num_classes'])
         self.environment = environment
-        self.preprocessed_data = load_and_preprocess_data(data_file_path)
-        self.reward_callback = reward(validation_data=self.preprocessed_data, **reward_config)
+        self.preprocessed_data = load_and_preprocess_data(data_file_path, 100)
+
+
 
     def act(self, state):
         """
@@ -25,12 +27,12 @@ class RNNModelAgent:
 
         return action
 
-    def learn(self, state, action, reward, next_state):
+    def learn(self, state, action, next_state):
         processed_state = self.preprocess_state(state)
         processed_next_state = self.preprocess_state(next_state)
 
         # Train the model and include the CustomRewardCallback in the training process
-        self.model.train(processed_state, action, reward, processed_next_state, callbacks=[self.reward_callback])
+        self.model.train(processed_state, action, processed_next_state)
 
     def get_preprocessed_data_for_state(self, state):
         """

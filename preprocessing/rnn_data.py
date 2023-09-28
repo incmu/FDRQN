@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
-from keras.preprocessing.sequence import pad_sequences
 from keras.utils import to_categorical
-
 
 def load_and_preprocess_data(file_path, seq_length):
     # Load CSV file
@@ -31,7 +29,17 @@ def load_and_preprocess_data(file_path, seq_length):
     # One-hot encode the output variable
     Y = to_categorical(dataY)
 
-    return X, Y, char_to_int, int_to_char
+    # Create a configuration dictionary
+    config = {
+        'seq_length': seq_length,
+        'num_chars': len(chars),
+        'num_classes': len(chars),
+        'input_shape': X.shape[1:]
+    }
 
-# Usage example:
-# X, Y, char_to_int, int_to_char = load_and_preprocess_data("javas.csv", seq_length=100)
+    # Return data and configuration as a dictionary
+    return {
+        'X': X,
+        'Y': Y,
+        'config': config
+    }

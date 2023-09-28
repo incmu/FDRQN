@@ -14,7 +14,7 @@ nltk.download('stopwords')
 
 def load_and_preprocess_data(file_path):
     # Load CSV file
-    data_frame = pd.read_csv('datasets/js_dataset/javas.csv')
+    data_frame = pd.read_csv(file_path)
 
     # Extracting 'nlp language' as input and 'target_variable' as output
     X = data_frame['nlp language'].values
@@ -45,4 +45,13 @@ def load_and_preprocess_data(file_path):
     one_hot_Y = to_categorical(integer_encoded_Y)
 
     # Returning preprocessed data and configuration
-    return padded_sequences_X, one_hot_Y, len(tokenizer.word_index) + 1, padded_sequences_X.shape[1], one_hot_Y.shape[1]
+    config = {
+        'vocab_size': len(tokenizer.word_index) + 1,
+        'input_length': padded_sequences_X.shape[1],
+        'num_classes': one_hot_Y.shape[1]
+    }
+    return {
+        'X': padded_sequences_X,
+        'Y': one_hot_Y,
+        'config': config
+    }

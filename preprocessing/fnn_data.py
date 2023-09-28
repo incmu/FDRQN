@@ -3,7 +3,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-
 def load_and_preprocess_data(file_path):
     # Load dataset
     df = pd.read_csv(file_path)
@@ -23,10 +22,17 @@ def load_and_preprocess_data(file_path):
     # Split the data into training and validation sets
     x_train, x_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # Return preprocessed data and label encoder
-    return x_train, y_train, x_val, y_val, label_binarizer
+    # Create a configuration dictionary
+    config = {
+        'num_features': X.shape[1],  # Number of features after TF-IDF
+        'num_classes': y.shape[1],   # Number of classes (one-hot encoded labels)
+    }
 
-
-# Example of usage:
-file_path = "datasets/js_dataset/javas.csv"
-x_train, y_train, x_val, y_val, label_binarizer = load_and_preprocess_data(file_path)
+    # Return preprocessed data and configuration as a dictionary
+    return {
+        'x_train': x_train,
+        'y_train': y_train,
+        'x_val': x_val,
+        'y_val': y_val,
+        'config': config,
+    }

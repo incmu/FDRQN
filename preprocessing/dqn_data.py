@@ -39,7 +39,7 @@ def load_and_preprocess_data(file_path):
     return states, actions, tokenizer
 
 
-file_path = "path_to_your_dataset/javas.csv"
+file_path = "datasets/js_dataset/javas.csv"
 states, actions, tokenizer = load_and_preprocess_data(file_path)
 
 print('States shape:', states.shape)
