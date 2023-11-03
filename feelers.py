@@ -18,7 +18,7 @@ random.seed(0)
 
 # Preprocess data and label encode target variable
 X_train, X_test, y_train, y_test, X_val, y_val = preprocess_data()
-# Assuming X_train is a DataFrame
+
 X_train = X_train.astype(np.float32)
 y_train = y_train.astype(np.int32)
 X_val = X_val.astype(np.float32)
